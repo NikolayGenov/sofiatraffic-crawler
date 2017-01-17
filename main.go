@@ -13,13 +13,8 @@ func ScapeStations(stationCode string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// Find the review items
-
 	doc.Find(".no-bullets li a").Each(func(i int, s *goquery.Selection) {
-		// For each item found, get the band and title
 		station := strings.TrimSpace(s.Text())
-
 		fmt.Printf("Station %d - %v\n", i, station)
 	})
 }

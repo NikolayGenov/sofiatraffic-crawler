@@ -11,9 +11,14 @@ That poll can be every couple of seconds at best. The idea of the poll is to pro
 
 The sources of information can be multiple.
 
+Source for schedules and lines can be [this website](http://schedules.sofiatraffic.bg/).
+
 An example can be this [Link](http://m.sofiatraffic.bg/schedules/vehicle?stop=1099&lid=24&vt=0&rid=873)
 What can be extracted here is possibly the soft time schedules (but there can be seen at other places as well),
 the list of consecutive stations with their names and Urban Mobility Center code (UMCC)
+
+We have to combine data from multiple sources because the sites are not static and most of the good data is hidden behind some javascript
+(will try to deal with this in the future).
 
 
 The data for the currently estimated time of arrival can be found by making a `POST` request to `http://m.sofiatraffic.bg/schedules/vehicle-vt` with example data `stop=1099&lid=24&vt=0&rid=873`

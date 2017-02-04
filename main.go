@@ -16,6 +16,7 @@ const (
 	TROLLEY_SECTION_PREFIX        = "Тролейбусни линии"
 	URBAN_BUSES_SECTION_PREFIX    = "Градски автобусни линии"
 	SUBURBAN_BUSES_SECTION_PREFIX = "Крайградски автобусни линии"
+	SUBWAY_SECTION                = "Метро"
 )
 
 //var rxOk = regexp.MustCompile(`http://schedules\.sofiatraffic\.bg(.*)$`)
@@ -30,6 +31,7 @@ type Lines struct {
 	trolleys      []LineNameAndURL
 	buses         []LineNameAndURL
 	suburbanBuses []LineNameAndURL
+	subwayLines   []LineNameAndURL
 }
 
 type LineTypesCrawler struct {
@@ -44,11 +46,11 @@ func (lt *LineTypesCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, d
 		lines := strings.Fields(typeAndLinesList[1])
 		linesInfo := make([]LineNameAndURL, len(lines))
 		s.Find("a").Each(func(i int, link *goquery.Selection) {
-			val, ok := link.Attr("href")
+			url, ok := link.Attr("href")
 			if !ok {
 				fmt.Errorf("The selector does not have an attribute href: %v", link.Text())
 			}
-			linesInfo[i] = LineNameAndURL{name: link.Text(), url: val}
+			linesInfo[i] = LineNameAndURL{name: link.Text(), url: url}
 		})
 		switch lineType {
 		case TRAMS_SECTION_PREFIX:
@@ -61,6 +63,16 @@ func (lt *LineTypesCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, d
 			lt.suburbanBuses = linesInfo
 		}
 	})
+	doc.Find(".quicksearch").Filter("a").Each(func(i int, s *goquery.Selection) {
+		if s.Text() == SUBWAY_SECTION {
+			url, ok := s.Attr("href")
+			if !ok {
+				fmt.Errorf("The selector does not have an attribute href: %v", s.Text())
+			}
+			lt.subwayLines = []LineNameAndURL{{name: SUBWAY_SECTION, url: url}}
+		}
+	})
+
 	return nil, false
 }
 
@@ -89,4 +101,6 @@ func main() {
 	fmt.Println(lines.buses)
 	fmt.Println("Suburban bus lines")
 	fmt.Println(lines.suburbanBuses)
+	fmt.Println("Subway")
+	fmt.Println(lines.subwayLines)
 }

@@ -9,7 +9,6 @@ import (
 	"os"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/andybalholm/cascadia"
 )
 
 const (
@@ -22,16 +21,30 @@ const (
 
 type OperationType int
 
+type OperationTypes []OperationType
+
 const (
 	OPERATION_NORMAL OperationType = iota
 	OPERATION_PRE_HOLIDAY
 	OPERATION_HOLIDAY
+	OPERATION_UNKNOWN
 )
+
+var operationsIdentifiersMap = map[string]OperationType{operation_normal_identifier: OPERATION_NORMAL,
+	operation_pre_holiday_or_holiday_identifier: OPERATION_HOLIDAY,
+	operation_holiday_identifier:                OPERATION_HOLIDAY,
+	operation_pre_holiday_identifier:            OPERATION_PRE_HOLIDAY}
 
 var operationStrings = [...]string{OPERATION_NORMAL: "Weekday",
 	OPERATION_PRE_HOLIDAY: "Pre-Holiday",
 	OPERATION_HOLIDAY:     "Holiday"}
 
+func (o OperationType) String() string {
+	return operationStrings[o]
+}
+
+// ===============================================
+//Current date and page postion related functions
 func getLineOperationType(doc *goquery.Document) OperationType {
 	operationTypeRaw := doc.Find(".schedule_active_list_active_tab").Text()
 	switch strings.TrimSpace(operationTypeRaw) {
@@ -48,12 +61,15 @@ func getLineOperationType(doc *goquery.Document) OperationType {
 	}
 }
 
+// =============================================
 type Direction struct {
 	Name string
 	ID   string
 	URL  string
 }
+
 type Directions [2]Direction
+
 type StopTuple struct {
 	Name         string
 	Number       string
@@ -63,10 +79,10 @@ type StopTuple struct {
 type StopsNames []StopTuple
 
 //ID which seems to be unique and it's for every diferent type of operation
-type SCID string
-type SCIDS [3]SCID
+type OperationID string
+type OperationTypeIDMap map[OperationType]OperationID
 
-//SCID
+//
 func findDirections(doc *goquery.Document) Directions {
 	directions := Directions{}
 	doc.Find(".schedule_view_direction_tabs").First().Find("a").Each(func(i int, s *goquery.Selection) {
@@ -84,24 +100,13 @@ func findDirections(doc *goquery.Document) Directions {
 	return directions
 }
 
-func findSCIDs(doc *goquery.Document) SCIDS {
-	scids := SCIDS{}
-	matcher := cascadia.MustCompile(`[id^="schedule"][id$="button"]:not([id*="direction"])`)
-	doc.FindMatcher(matcher).Each(func(i int, s *goquery.Selection) {
-		attribute_id, _ := s.Attr("id")
-		splits := strings.Split(attribute_id, "_")
-		scids[i] = SCID(splits[1])
-	})
-	return scids
-}
-
 //get sschedule from schedule_6484_direction_172_sign_693
-func findStopNames(doc *goquery.Document) StopsNames {
+func findStopNames(doc *goquery.Document) (StopsNames, StopsNames) {
 	stopNames := make(StopsNames, 0)
 	doc.Find(".schedule_view_route_directions").
 		First().
 		Find(".schedule_direction_sign_wrapper ul").
-		First().
+		//First().
 		Find("li").Each(func(i int, s *goquery.Selection) {
 
 		nameSelection := s.Find(".stop_change")
@@ -123,40 +128,65 @@ func findStopNames(doc *goquery.Document) StopsNames {
 		stopNames = append(stopNames, StopTuple{name, number, url, stopViewLink})
 	})
 
-	return stopNames
+	return stopNames[:len(stopNames)/2], stopNames[len(stopNames)/2:]
+}
+func findOperationType(s string) OperationType {
+	for k, v := range operationsIdentifiersMap {
+		if s == k {
+			return v
+		}
+	}
+	return OPERATION_UNKNOWN
 }
 
-func getSelectionForOperationType(doc *goquery.Document, operationType OperationType) {
-	doc.Find(".schedule_active_list_content").Each(func(i int, operationTypeSelection *goquery.Selection) {
-		str := strings.TrimSpace(operationTypeSelection.ChildrenFiltered("h3").Text())
-		var operationType OperationType
-		switch true {
-		case strings.HasPrefix(str, string(operation_normal_identifier)):
-			operationType = OPERATION_NORMAL
-		case strings.HasPrefix(str, string(operation_pre_holiday_or_holiday_prefix)):
-			operationType = OPERATION_HOLIDAY
-		case strings.HasPrefix(str, string(operation_holiday_identifier)):
-			operationType = OPERATION_HOLIDAY
-		case strings.HasPrefix(str, string(operation_pre_holiday_identifier)):
-			operationType = OPERATION_PRE_HOLIDAY
+func getOperationMap(doc *goquery.Document) OperationTypeIDMap {
+	operationMap := make(OperationTypeIDMap)
+	doc.Find(".schedule_active_list_tabs li a").Each(func(i int, linkSelection *goquery.Selection) {
+		operationTypeString := strings.TrimSpace(linkSelection.Text())
+		operationType := findOperationType(operationTypeString)
+		if attributeID, ok := linkSelection.Attr("id"); ok {
+			attributeParts := strings.Split(attributeID, "_")
+			if len(attributeParts) > 1 {
+				operationID := attributeParts[1]
+				operationMap[operationType] = OperationID(operationID)
+			} else {
+				log.Printf("id of this link is not in the format 'schedule_xxxx_button' as needed: %v", attributeID)
+			}
+		} else {
+			log.Println("This element does not have attribute id, which was expected for normal processing")
+
 		}
 
-		fmt.Printf("Operation type: [%v]\n", operationStrings[operationType])
-
 	})
-
+	return operationMap
+}
+func getTimes(doc *goquery.Document) []string {
+	//TODO - Only One selection
+	times := make([]string, 0)
+	doc.Find(".schedule_times tbody").First().Find("a").Each(func(i int, s *goquery.Selection) {
+		times = append(times, strings.TrimSpace(s.Text()))
+	})
+	return times
 }
 
+//func advancedTimes(){
+//}
+
 func CrawlLine(line LineNameAndURL, r io.Reader) {
+	//doc, err := goquery.NewDocument("http://schedules.sofiatraffic.bg/server/html/schedule_load/6672/2696/377")
+	//fmt.Println(doc.Text())
 	doc, err := goquery.NewDocumentFromReader(r)
 	if err != nil {
 		log.Fatal(err)
 	}
-	getSelectionForOperationType(doc, OPERATION_HOLIDAY)
+	m := getOperationMap(doc)
+	fmt.Println(m)
 	directions := findDirections(doc)
 	fmt.Println(directions)
-	stopsNames := findStopNames(doc)
-	fmt.Println(stopsNames)
-	scids := findSCIDs(doc)
-	fmt.Println(scids)
+	stopsNames1, stopnames2 := findStopNames(doc)
+	fmt.Println(stopsNames1)
+	fmt.Println(stopnames2)
+	times := getTimes(doc)
+	fmt.Println(times)
+
 }

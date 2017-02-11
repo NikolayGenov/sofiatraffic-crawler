@@ -71,12 +71,12 @@ func download(conn redis.Conn) {
 }
 
 func loadLines(conn redis.Conn) crawler.Lines {
-
 	var lines crawler.Lines
 	serilizedLines, _ := redis.Bytes(conn.Do("GET", "lines"))
 	json.Unmarshal(serilizedLines, &lines)
 	return lines
 }
+
 func main() {
 
 	conn, _ := redis.Dial("tcp", ":6379")
@@ -90,8 +90,7 @@ func main() {
 	//	r := strings.NewReader(tramHTML)
 	//	crawler.CrawlLine(l, r)
 	//}
-
-	l := crawler.LineNameAndURL{"1", "tramway/1"}
+	l := crawler.LineNameAndURL{"3", "tramway/3"}
 	tramHTML, _ := redis.String(conn.Do("GET", "wednesday/"+l.URL))
 	r := strings.NewReader(tramHTML)
 	crawler.CrawlLine(l, r)

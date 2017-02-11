@@ -23,6 +23,20 @@ type LineNameAndURL struct {
 	Name string
 	URL  string
 }
+type TransportationType int
+
+const (
+	Tram TransportationType = iota
+	Trolley
+	Bus
+	Suburban
+	Subway
+)
+
+type Line struct {
+	Type   TransportationType
+	Number string
+}
 
 type Lines struct {
 	Trams         []LineNameAndURL
@@ -48,6 +62,7 @@ func (lt *lineTypesCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, d
 				linesInfo[i] = LineNameAndURL{Name: link.Text(), URL: url}
 			}
 		})
+		//FIXME - replace it with direct compare
 		switch lineType {
 		case trams_query_prefix:
 			lt.Trams = linesInfo

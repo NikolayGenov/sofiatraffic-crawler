@@ -36,7 +36,7 @@ func allData(lines crawler.LinesBasicInfo) []string {
 	return seeds
 }
 func download(conn redis.Conn) {
-	lines := crawler.ActiveLines()
+	lines := crawler.GetLineBasicInfo()
 	fmt.Println(lines)
 	//serialized, _ := json.Marshal(lines)
 	//conn.Do("SET", "lines", serialized)

@@ -22,7 +22,7 @@ type LineBasicInfo struct {
 
 type LinesBasicInfo []LineBasicInfo
 
-type lineTypesCrawler struct {
+type lineBasicInfoCrawler struct {
 	gocrawl.DefaultExtender
 	lines LinesBasicInfo
 }
@@ -44,7 +44,7 @@ func (l *LinesBasicInfo) getLines(doc *goquery.Document) {
 		})
 }
 
-func (lt *lineTypesCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
+func (lt *lineBasicInfoCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
 	lt.lines.getLines(doc)
 	return nil, false
 }

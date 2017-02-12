@@ -24,7 +24,7 @@ type LinesBasicInfo []LineBasicInfo
 
 type lineBasicInfoCrawler struct {
 	gocrawl.DefaultExtender
-	lines LinesBasicInfo
+	LinesBasicInfo
 }
 
 func (l *LinesBasicInfo) getLines(doc *goquery.Document) {
@@ -38,13 +38,13 @@ func (l *LinesBasicInfo) getLines(doc *goquery.Document) {
 			lineTypeString := strings.Split(url, "/")[0]
 			lineType, ok := transportationTypeIdentifierMap[lineTypeString]
 			if !ok {
-				panic(fmt.Errorf("Line MUST one of required types in order to be processed, given: %v", lineTypeString))
+				panic(fmt.Errorf("Line MUST be one of required transporation types in order to be processed, given: %v", lineTypeString))
 			}
 			*l = append(*l, LineBasicInfo{Name: link.Text(), URL: url, Type: lineType})
 		})
 }
 
-func (lt *lineBasicInfoCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
-	lt.lines.getLines(doc)
+func (l *lineBasicInfoCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
+	l.getLines(doc)
 	return nil, false
 }

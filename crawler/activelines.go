@@ -30,20 +30,13 @@ const (
 	Trolley
 	Bus
 	Suburban
-	Subway
 )
-
-type Line struct {
-	Type   TransportationType
-	Number string
-}
 
 type Lines struct {
 	Trams         []LineNameAndURL
 	Trolleys      []LineNameAndURL
 	Buses         []LineNameAndURL
 	SuburbanBuses []LineNameAndURL
-	SubwayLines   []LineNameAndURL
 }
 
 type lineTypesCrawler struct {
@@ -72,13 +65,6 @@ func (lt *lineTypesCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, d
 			lt.Buses = linesInfo
 		case suburban_buses_query_prefix:
 			lt.SuburbanBuses = linesInfo
-		}
-	})
-	doc.Find(".quicksearch").Filter("a").Each(func(i int, s *goquery.Selection) {
-		if s.Text() == subway_query {
-			if url, ok := s.Attr("href"); ok {
-				lt.SubwayLines = []LineNameAndURL{{Name: subway_query, URL: url}}
-			}
 		}
 	})
 

@@ -94,7 +94,9 @@ func getLineOperationType(doc *goquery.Document) OperationType {
 }
 
 /* ========================================================================================= */
-type LineSomething struct {
+type Line struct {
+	Type   TransportationType
+	Number string
 	Routes
 	OperationTypeIDMap
 }
@@ -268,8 +270,10 @@ func getNormalTimes(doc *goquery.Document) []string {
 //}
 
 /* ========================================================================================= */
-func buildLinkSuffixes(baseURL string, something LineSomething) []string {
+func buildLinkSuffixes(baseURL string, something Line) []string {
 	links := make([]string, 0)
+	fmt.Println(something.Routes[0].Stops)
+	fmt.Println(something.Routes[0].Direction.Name)
 	for _, operationID := range something.OperationTypeIDMap {
 		for _, route := range something.Routes {
 			for _, stop := range route.Stops {
@@ -281,28 +285,30 @@ func buildLinkSuffixes(baseURL string, something LineSomething) []string {
 	}
 	return links
 }
-func makeLineSomething(doc *goquery.Document) LineSomething {
-	return LineSomething{getRoutes(doc), getOperationsMap(doc)}
-}
 
-func createLinksForCrawling(baseURL string, doc *goquery.Document) []string {
-	lineSomething := makeLineSomething(doc)
-	links := buildLinkSuffixes(baseURL, lineSomething)
-	return links
-}
+//func makeLineSomething(doc *goquery.Document) Line {
+//	return Line{getRoutes(doc), getOperationsMap(doc)}
+//}
+//
+//func createLinksForCrawling(baseURL string, doc *goquery.Document) []string {
+//	lineSomething := makeLineSomething(doc)
+//	links := buildLinkSuffixes(baseURL, lineSomething)
+//	return links
+//}
 
 /* ========================================================================================= */
 
 func CrawlLine(line LineNameAndURL, r io.Reader) {
-	doc, err := goquery.NewDocumentFromReader(r)
-	if err != nil {
-		log.Fatal(err)
-	}
+	//doc, err := goquery.NewDocumentFromReader(r)
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
 
 	//links := buildLinkSuffixes(doc)
 	//fmt.Println(links)
 	URL := "http://schedules.sofiatraffic.bg/server/html/schedule_load"
-	links := createLinksForCrawling(URL, doc)
+	fmt.Println(URL)
+	//links := createLinksForCrawling(URL, doc)
 	//d, _ := goquery.NewDocument(links[0])
 	//fmt.Println(d.Text())
 	//for _, link := range links {
@@ -314,6 +320,6 @@ func CrawlLine(line LineNameAndURL, r io.Reader) {
 	//times := getNormalTimes(d)
 	//fmt.Println(times)
 
-	fmt.Println(links)
-	fmt.Println(len(links))
+	//fmt.Println(links)
+	//fmt.Println(len(links))
 }

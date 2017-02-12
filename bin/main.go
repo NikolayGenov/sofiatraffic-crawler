@@ -28,18 +28,9 @@ func (lt *x) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Doc
 	return nil, false
 }
 
-func allData(lines *crawler.Lines) []string {
+func allData(lines crawler.LinesBasicInfo) []string {
 	seeds := make([]string, 0)
-	for _, l := range lines.Trams {
-		seeds = append(seeds, SCHEDULE_URL+l.URL)
-	}
-	for _, l := range lines.Trolleys {
-		seeds = append(seeds, SCHEDULE_URL+l.URL)
-	}
-	for _, l := range lines.Buses {
-		seeds = append(seeds, SCHEDULE_URL+l.URL)
-	}
-	for _, l := range lines.SuburbanBuses {
+	for _, l := range lines {
 		seeds = append(seeds, SCHEDULE_URL+l.URL)
 	}
 	return seeds
@@ -66,11 +57,10 @@ func download(conn redis.Conn) {
 
 }
 
-func loadLines(conn redis.Conn) crawler.Lines {
-	var lines crawler.Lines
-	serilizedLines, _ := redis.Bytes(conn.Do("GET", "lines"))
-	json.Unmarshal(serilizedLines, &lines)
-	return lines
+func loadLines(conn redis.Conn) (lines crawler.LinesBasicInfo) {
+	serializedLines, _ := redis.Bytes(conn.Do("GET", "lines"))
+	json.Unmarshal(serializedLines, &lines)
+	return
 }
 
 func main() {

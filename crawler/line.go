@@ -10,6 +10,22 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+type TransportationType int
+
+const (
+	Tram TransportationType = iota
+	Trolley
+	Bus
+)
+
+var transportationTypeStrings = [...]string{Tram: "Tram",
+	Trolley: "Trolley",
+	Bus:     "Bus"}
+
+func (tt TransportationType) String() string {
+	return transportationTypeStrings[tt]
+}
+
 /* ========================================================================================= */
 type OperationType int
 type OperationTypes []OperationType
@@ -31,7 +47,8 @@ const (
 	operation_pre_holiday_or_holiday_identifier = "предпразник / празник"
 )
 
-var operationsIdentifiers = map[string]OperationType{operation_normal_identifier: OPERATION_NORMAL,
+var operationsIdentifiers = map[string]OperationType{
+	operation_normal_identifier:                 OPERATION_NORMAL,
 	operation_pre_holiday_or_holiday_identifier: OPERATION_HOLIDAY,
 	operation_holiday_identifier:                OPERATION_HOLIDAY,
 	operation_pre_holiday_identifier:            OPERATION_PRE_HOLIDAY}
@@ -298,7 +315,7 @@ func buildLinkSuffixes(baseURL string, something Line) []string {
 
 /* ========================================================================================= */
 
-func CrawlLine(line LineNameAndURL, r io.Reader) {
+func CrawlLine(line LineBasicInfo, r io.Reader) {
 	//doc, err := goquery.NewDocumentFromReader(r)
 	//if err != nil {
 	//	log.Fatal(err)

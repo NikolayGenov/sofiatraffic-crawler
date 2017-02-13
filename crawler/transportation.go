@@ -6,8 +6,8 @@ type Transportation int
 
 const (
 	Tram Transportation = iota
-	Trolley
 	Bus
+	Trolley
 )
 
 var (
@@ -18,8 +18,8 @@ var (
 
 	transportationStrings = [...]string{
 		Tram:    "Tram",
-		Trolley: "Trolley",
-		Bus:     "Bus"}
+		Bus:     "Bus",
+		Trolley: "Trolley"}
 )
 
 func (t Transportation) String() string {

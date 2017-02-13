@@ -1,9 +1,14 @@
 package crawler
 
 import (
+	"bytes"
 	"fmt"
 	"strconv"
 )
+
+type OperationIDMap map[Operation]OperationID
+
+type OperationIDRoutesMap map[OperationID]Routes
 
 type Line struct {
 	LineBasicInfo
@@ -23,4 +28,24 @@ func (l *Line) LinksToCrawl(baseURL string) []string {
 		}
 	}
 	return links
+}
+
+func (o OperationIDMap) String() string {
+	s := "["
+	for operation, id := range o {
+		s += fmt.Sprintf("%v (%v) ", operation, id)
+	}
+	s += "]"
+	return s
+}
+func (o OperationIDRoutesMap) String() string {
+	var buffer bytes.Buffer
+	for id, routes := range o {
+		buffer.WriteString(fmt.Sprintf("(OperationID: %v)%v\n", id, routes))
+	}
+	return buffer.String()
+}
+
+func (l Line) String() string {
+	return fmt.Sprintf("%v\n%v\n%v", l.LineBasicInfo, l.OperationIDMap, l.OperationIDRoutesMap)
 }

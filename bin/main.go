@@ -7,6 +7,8 @@ import (
 
 	"../crawler"
 
+	"strings"
+
 	"github.com/PuerkitoBio/gocrawl"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/garyburd/redigo/redis"
@@ -69,23 +71,23 @@ func loadLines(conn redis.Conn) (lines crawler.LinesBasicInfo) {
 func main() {
 
 	conn, _ := redis.Dial("tcp", ":6379")
-	download(conn)
+	//download(conn)
 	//
-	//lines := loadLines(conn)
-	//fmt.Println(lines)
-	//
-	//allLinks := make([]string, 0)
-	//for _, l := range lines {
-	//	tramHTML, _ := redis.String(conn.Do("GET", "wednesday/"+l.URL))
-	//
-	//	r := strings.NewReader(tramHTML)
-	//	line := l.HelperTestReaderVisit(r)
-	//	links := line.LinksToCrawl("")
-	//	fmt.Println(line)
-	//	allLinks = append(allLinks, links...)
-	//
-	//}
-	//fmt.Println(len(allLinks))
+	lines := loadLines(conn)
+	fmt.Println(lines)
+
+	allLinks := make([]string, 0)
+	for _, l := range lines {
+		tramHTML, _ := redis.String(conn.Do("GET", "wednesday/"+l.URL))
+
+		r := strings.NewReader(tramHTML)
+		line := l.HelperTestReaderVisit(r)
+		links := line.LinksToCrawl("")
+		fmt.Println(line)
+		allLinks = append(allLinks, links...)
+
+	}
+	fmt.Println(len(allLinks))
 
 	//l := lines[1]
 	//l := crawler.LineBasicInfo{"119", "autobus/119", crawler.Bus}

@@ -6,10 +6,6 @@ type Operation int
 
 type OperationID string
 
-type OperationIDMap map[Operation]OperationID
-
-type OperationIDRoutesMap map[OperationID]Routes
-
 const (
 	Operation_Normal Operation = iota
 	Operation_Pre_Holiday

@@ -26,7 +26,7 @@ type Stop struct {
 }
 type Stops []Stop
 
-func (s Stop) String() string {
+func (s *Stop) String() string {
 	return fmt.Sprintf("[%v] %v (%v)", s.Sign, s.CapitalName, s.ID)
 }
 func (s Stops) String() string {

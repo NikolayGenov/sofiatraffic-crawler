@@ -1,10 +1,6 @@
 package crawler
 
-import (
-	"fmt"
-
-	"github.com/PuerkitoBio/gocrawl"
-)
+import "fmt"
 
 const (
 	schedules_main_url        = "http://schedules.sofiatraffic.bg/"
@@ -17,31 +13,26 @@ type SofiaTrafficCrawler struct {
 	Schedules
 }
 
-func (s *SofiaTrafficCrawler) CrawlLines() {
-	lineCrawler := &lineCrawler{}
-	opts := gocrawl.NewOptions(lineCrawler)
-	opts.UserAgent = user_agent
-	opts.CrawlDelay = 0
-	opts.LogFlags = gocrawl.LogError
-	opts.SameHostOnly = true
-	c := gocrawl.NewCrawlerWithOptions(opts)
-	c.Run(schedules_main_url)
-	s.Lines = lineCrawler.lines
+type crawlable interface {
+	Run(seeds interface{}) error
+	Stop()
+}
 
+func NewSofiaTrafficCrawler() *SofiaTrafficCrawler {
+	return &SofiaTrafficCrawler{
+		Lines:     make([]Line, 0),
+		Schedules: make(map[ScheduleID]ScheduleTimes)}
+}
+
+func (s *SofiaTrafficCrawler) CrawlLines() {
+	lineCrawler := newLineCrawler(s.Lines)
+	lineCrawler.Run(schedules_main_url)
 }
 
 func (s *SofiaTrafficCrawler) CrawlSchedules() {
 	links := buildSchedulesLinks(s.Lines)
-	schedulesCrawler := &schedulesCrawler{}
-	schedulesCrawler.Schedules = make(Schedules)
-	opts := gocrawl.NewOptions(schedulesCrawler)
-	opts.UserAgent = user_agent
-	opts.CrawlDelay = 0
-	opts.LogFlags = gocrawl.LogError
-	opts.SameHostOnly = true
-	c := gocrawl.NewCrawlerWithOptions(opts)
-	c.Run(links)
-	s.Schedules = schedulesCrawler.Schedules
+	schedulesCrawler := newSchedulesCrawler(s.Schedules)
+	schedulesCrawler.Run(links)
 }
 
 func buildSchedulesLinks(lines []Line) []string {

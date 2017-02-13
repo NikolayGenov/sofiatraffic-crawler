@@ -48,3 +48,14 @@ func (l *lineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *go
 	}
 	return nil, true
 }
+
+func newLineCrawler(lines []Line) crawlable {
+	lineCrawler := &lineCrawler{lines: lines}
+	opts := gocrawl.NewOptions(lineCrawler)
+	opts.UserAgent = user_agent
+	opts.CrawlDelay = 0
+	opts.LogFlags = gocrawl.LogError
+	opts.SameHostOnly = true
+	c := gocrawl.NewCrawlerWithOptions(opts)
+	return c
+}

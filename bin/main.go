@@ -3,16 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-
-	"../crawler"
-
 	"strings"
 
+	"../crawler"
 	"github.com/garyburd/redigo/redis"
 )
-
-const SCHEDULE_URL = "http://schedules.sofiatraffic.bg"
-const schedules_times_basic_url = "http://schedules.sofiatraffic.bg/server/html/schedule_load"
 
 func loadIDLines(conn redis.Conn, paths []string) (lines []crawler.Line) {
 	query := make([]string, len(paths))
@@ -49,21 +44,21 @@ func crawlAllLines(conn redis.Conn, st *crawler.SofiaTrafficCrawler) []crawler.L
 }
 
 func main() {
-	st := crawler.SofiaTrafficCrawler{}
+	st := crawler.NewSofiaTrafficCrawler()
 	conn, _ := redis.Dial("tcp", ":6379")
 	//start := time.Now()
 
 	/* Load or crawl lines */
 	//lines := crawlAllLines(conn)
 	lines := loadAllLines(conn)
-	st.Lines = lines
+	st.Lines = lines[:1]
 	//fmt.Println(len(lines))
 	//elapsed := time.Since(start)
 	//fmt.Printf("Took %s\n", elapsed)
 
-	//for _, l := range lines {
-	//	fmt.Println(l)
-	//}
+	for _, l := range st.Lines {
+		fmt.Println(l)
+	}
 
 	st.CrawlSchedules()
 

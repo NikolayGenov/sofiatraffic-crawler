@@ -6,13 +6,12 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-//Current date and page postion related functions
-func getLineOperationType(doc *goquery.Document) OperationType {
-	operationTypeRaw := doc.Find(".schedule_active_list_active_tab").Text()
+func getLineOperation(doc *goquery.Document) Operation {
+	operationString := doc.Find(".schedule_active_list_active_tab").Text()
+	operation, err := convertToOperation(operationString)
+	if err != nil {
+		panic(fmt.Errorf("Line MUST have of required operation types in order to be processed, given: %v", operationString))
 
-	operationType, ok := operationsIdentifiers[operationTypeRaw]
-	if !ok {
-		panic(fmt.Errorf("No operation mode found %v", operationTypeRaw))
 	}
-	return operationType
+	return operation
 }

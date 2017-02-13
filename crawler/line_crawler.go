@@ -11,7 +11,7 @@ import (
 
 type lineCrawler struct {
 	gocrawl.DefaultExtender
-	lines []Line
+	lines *[]Line
 }
 
 func (l *lineCrawler) Filter(ctx *gocrawl.URLContext, isVisited bool) bool {
@@ -44,12 +44,13 @@ func (l *lineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *go
 			Path:                 path,
 			OperationIDMap:       getOperationsMap(doc),
 			OperationIDRoutesMap: getOperationIDRoutesMap(doc)}
-		l.lines = append(l.lines, line)
+		*l.lines = append(*l.lines, line)
+
 	}
 	return nil, true
 }
 
-func newLineCrawler(lines []Line) crawlable {
+func newLineCrawler(lines *[]Line) crawlable {
 	lineCrawler := &lineCrawler{lines: lines}
 	opts := gocrawl.NewOptions(lineCrawler)
 	opts.UserAgent = user_agent

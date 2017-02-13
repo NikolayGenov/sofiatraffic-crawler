@@ -25,7 +25,7 @@ func NewSofiaTrafficCrawler() *SofiaTrafficCrawler {
 }
 
 func (s *SofiaTrafficCrawler) CrawlLines() {
-	lineCrawler := newLineCrawler(s.Lines)
+	lineCrawler := newLineCrawler(&s.Lines)
 	lineCrawler.Run(schedules_main_url)
 }
 

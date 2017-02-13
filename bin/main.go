@@ -39,8 +39,9 @@ func loadAllLines(conn redis.Conn) (lines []crawler.Line) {
 	return
 }
 
-func crawlAllLines(conn redis.Conn) []crawler.Line {
-	lines := crawler.CrawlLines()
+func crawlAllLines(conn redis.Conn, st *crawler.SofiaTrafficCrawler) []crawler.Line {
+	st.CrawlLines()
+	lines := st.Lines
 	serialized, _ := json.Marshal(lines)
 	conn.Do("SET", "allLines", serialized)
 
@@ -48,14 +49,14 @@ func crawlAllLines(conn redis.Conn) []crawler.Line {
 }
 
 func main() {
-
+	st := crawler.SofiaTrafficCrawler{}
 	conn, _ := redis.Dial("tcp", ":6379")
 	//start := time.Now()
 
 	/* Load or crawl lines */
 	//lines := crawlAllLines(conn)
 	lines := loadAllLines(conn)
-
+	st.Lines = lines
 	//fmt.Println(len(lines))
 	//elapsed := time.Since(start)
 	//fmt.Printf("Took %s\n", elapsed)
@@ -64,8 +65,9 @@ func main() {
 	//	fmt.Println(l)
 	//}
 
-	schedules := crawler.CrawlSchedules(lines[:1])
-	for id, times := range schedules {
+	st.CrawlSchedules()
+
+	for id, times := range st.Schedules {
 		fmt.Printf("%v - > %v\n", id, times)
 	}
 	//seeds := make([]string, 0)

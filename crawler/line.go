@@ -11,31 +11,32 @@ type OperationIDMap map[Operation]OperationID
 type OperationIDRoutesMap map[OperationID]Routes
 
 type Line struct {
-	LineBasicInfo
+	Name string
+	Path string
+	Transportation
 	OperationIDMap
 	OperationIDRoutesMap
 }
 
-func (l *Line) LinksToCrawl(baseURL string) []string {
-	links := make([]string, 0)
+func (l *Line) ScheduleIDs() []ScheduleID {
+	scheduleIDs := make([]ScheduleID, 0)
 	for operationID, routes := range l.OperationIDRoutesMap {
 		for _, route := range routes {
 			for _, stop := range route.Stops {
 				stopID, _ := strconv.Atoi(stop.Sign)
-				links = append(links,
-					fmt.Sprintf("%v/%v/%v/%v", baseURL, operationID, route.Direction.ID, stopID))
+				scheduleID := ScheduleID(fmt.Sprintf("%v/%v/%v", operationID, route.Direction.ID, stopID))
+				scheduleIDs = append(scheduleIDs, scheduleID)
 			}
 		}
 	}
-	return links
+	return scheduleIDs
 }
 
 func (o OperationIDMap) String() string {
-	s := "["
+	s := ""
 	for operation, id := range o {
-		s += fmt.Sprintf("%v (%v) ", operation, id)
+		s += fmt.Sprintf("%v (%v)\n", operation, id)
 	}
-	s += "]"
 	return s
 }
 func (o OperationIDRoutesMap) String() string {
@@ -47,5 +48,5 @@ func (o OperationIDRoutesMap) String() string {
 }
 
 func (l Line) String() string {
-	return fmt.Sprintf("%v\n%v\n%v", l.LineBasicInfo, l.OperationIDMap, l.OperationIDRoutesMap)
+	return fmt.Sprintf("%v '%v'\n%v%v", l.Transportation, l.Name, l.OperationIDMap, l.OperationIDRoutesMap)
 }

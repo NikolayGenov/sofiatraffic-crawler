@@ -1,11 +1,13 @@
 package crawler
 
 import (
-	"time"
-
-	"io"
-	"log"
 	"net/http"
+
+	"fmt"
+
+	"strings"
+
+	"time"
 
 	"github.com/PuerkitoBio/gocrawl"
 	"github.com/PuerkitoBio/goquery"
@@ -17,66 +19,93 @@ const (
 	schedules_times_basic_url = "http://schedules.sofiatraffic.bg/server/html/schedule_load"
 )
 
-type lineBasicInfoCrawler struct {
-	gocrawl.DefaultExtender
-	LinesBasicInfo
-}
-
 type lineCrawler struct {
 	gocrawl.DefaultExtender
-	Line
+	lines []Line
 }
 
-func (l *lineBasicInfoCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
-	l.LinesBasicInfo = getLinesBasicInfo(doc)
-	return nil, false
+type schedulesCrawler struct {
+	gocrawl.DefaultExtender
+	Schedules
+}
+
+func (l *lineCrawler) Filter(ctx *gocrawl.URLContext, isVisited bool) bool {
+	if isVisited {
+		return false
+	}
+	path := ctx.URL().Path
+	if path == "/" ||
+		strings.HasPrefix(path, "/tramway") ||
+		strings.HasPrefix(path, "/trolleybus") ||
+		strings.HasPrefix(path, "/autobus") {
+		return true
+	}
+
+	return false
 }
 
 func (l *lineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
-	l.OperationIDMap = getOperationsMap(doc)
-	l.OperationIDRoutesMap = getOperationIDRoutesMap(doc)
+	path := ctx.URL().Path
+	if ctx.URL().Path != "/" {
+		parts := strings.Split(path[1:], "/")
+		name := parts[1]
+		transportation, err := convertToTransportation(parts[0])
+		if err != nil || name == "" {
+			panic(fmt.Errorf("Unknown transporation type or empty name, given: %v", parts))
+		}
+		line := Line{
+			Name:                 name,
+			Transportation:       transportation,
+			Path:                 path,
+			OperationIDMap:       getOperationsMap(doc),
+			OperationIDRoutesMap: getOperationIDRoutesMap(doc)}
+		l.lines = append(l.lines, line)
+	}
+	return nil, true
+}
+
+func (s *schedulesCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
+	scheduleID := convertToScheduleID(ctx.URL().Path)
+	scheduleTimes := getScheduleTimes(doc)
+	s.Schedules[scheduleID] = scheduleTimes
 	return nil, false
 }
 
-func GetLineBasicInfo() LinesBasicInfo {
-
-	lineBasicInfoCrawler := &lineBasicInfoCrawler{}
-	opts := gocrawl.NewOptions(lineBasicInfoCrawler)
+func CrawlLines() []Line {
+	lineCrawler := &lineCrawler{}
+	opts := gocrawl.NewOptions(lineCrawler)
 	opts.UserAgent = user_agent
-	opts.CrawlDelay = 100 * time.Millisecond
+	opts.CrawlDelay = 0
 	opts.LogFlags = gocrawl.LogError
-	opts.MaxVisits = 1
 	opts.SameHostOnly = true
 	c := gocrawl.NewCrawlerWithOptions(opts)
 	c.Run(schedules_main_url)
 
-	return lineBasicInfoCrawler.LinesBasicInfo
+	return lineCrawler.lines
 }
-func CrawlLine(line LineBasicInfo) Line {
 
-	lineCrawler := &lineCrawler{}
-	lineCrawler.LineBasicInfo = line
-	opts := gocrawl.NewOptions(lineCrawler)
+func CrawlSchedules(lines []Line) Schedules {
+	links := buildSchedulesLinks(lines)
+	schedulesCrawler := &schedulesCrawler{}
+	schedulesCrawler.Schedules = make(Schedules)
+	opts := gocrawl.NewOptions(schedulesCrawler)
 	opts.UserAgent = user_agent
-	opts.CrawlDelay = 100 * time.Millisecond
+
+	opts.CrawlDelay = 1 * time.Microsecond
 	opts.LogFlags = gocrawl.LogError
-	opts.MaxVisits = 1
 	opts.SameHostOnly = true
 	c := gocrawl.NewCrawlerWithOptions(opts)
-	c.Run(schedules_main_url + line.URL)
+	c.Run(links)
 
-	return lineCrawler.Line
+	return schedulesCrawler.Schedules
 }
 
-func (l *LineBasicInfo) HelperTestReaderVisit(r io.Reader) Line {
-	doc, err := goquery.NewDocumentFromReader(r)
-	if err != nil {
-		log.Fatal(err)
+func buildSchedulesLinks(lines []Line) []string {
+	scheduleLinks := make([]string, 0)
+	for _, line := range lines {
+		for _, id := range line.ScheduleIDs() {
+			scheduleLinks = append(scheduleLinks, fmt.Sprintf("%v/%v", schedules_times_basic_url, id))
+		}
 	}
-	line := Line{}
-	line.LineBasicInfo = *l
-	line.OperationIDMap = getOperationsMap(doc)
-	line.OperationIDRoutesMap = getOperationIDRoutesMap(doc)
-
-	return line
+	return scheduleLinks
 }

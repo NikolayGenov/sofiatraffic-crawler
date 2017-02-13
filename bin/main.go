@@ -3,95 +3,81 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
 
 	"../crawler"
 
 	"strings"
 
-	"github.com/PuerkitoBio/gocrawl"
-	"github.com/PuerkitoBio/goquery"
 	"github.com/garyburd/redigo/redis"
 )
 
-const SCHEDULE_URL = "http://schedules.sofiatraffic.bg/"
+const SCHEDULE_URL = "http://schedules.sofiatraffic.bg"
 const schedules_times_basic_url = "http://schedules.sofiatraffic.bg/server/html/schedule_load"
 
-type x struct {
-	gocrawl.DefaultExtender
-	conn redis.Conn
-}
+func loadIDLines(conn redis.Conn, paths []string) (lines []crawler.Line) {
+	query := make([]string, len(paths))
 
-func (lt *x) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
-	url := ctx.URL().Path[1:]
-	html, _ := doc.Html()
-	lt.conn.Do("SET", "wednesday/"+url, html)
-	return nil, false
-}
-
-func allData(lines crawler.LinesBasicInfo) []string {
-	seeds := make([]string, 0)
-	for _, l := range lines {
-		seeds = append(seeds, SCHEDULE_URL+l.URL)
+	for i, path := range paths {
+		query[i] = fmt.Sprintf("line%v", path)
 	}
-	return seeds
-}
-func download(conn redis.Conn) {
-	lines := crawler.GetLineBasicInfo()
-	fmt.Println(lines)
-	//lineInfo := lines[0]
-	//line := crawler.CrawlLine(lineInfo)
-	//fmt.Println(line)
-	//fmt.Println(line.LinksToCrawl(schedules_times_basic_url))
-	//serialized, _ := json.Marshal(lines)
-	//conn.Do("SET", "lines", serialized)
-	//
-	//lineTypesCrawler := new(x)
-	//lineTypesCrawler.conn = conn
-	//opts := gocrawl.NewOptions(lineTypesCrawler)
-	//opts.CrawlDelay = 1 * time.Millisecond
-	//opts.LogFlags = gocrawl.LogEnqueued
-	//
-	//opts.SameHostOnly = true
-	//c := gocrawl.NewCrawlerWithOptions(opts)
-	//
-	////Trams
-	//
-	//seeds := allData(&lines)
-	//c.Run(seeds)
 
-}
-
-func loadLines(conn redis.Conn) (lines crawler.LinesBasicInfo) {
-	serializedLines, _ := redis.Bytes(conn.Do("GET", "lines"))
+	serializedLines, _ := redis.Bytes(conn.Do("MGET", strings.Join(query, " ")))
 	json.Unmarshal(serializedLines, &lines)
 	return
+}
+
+func saveLines(conn redis.Conn, lines []crawler.Line) {
+	for _, line := range lines {
+		serialized, _ := json.Marshal(line)
+		conn.Do("SET", fmt.Sprintf("line%v", line.Path), serialized)
+	}
+}
+
+func loadAllLines(conn redis.Conn) (lines []crawler.Line) {
+	serializedLines, _ := redis.Bytes(conn.Do("GET", "allLines"))
+	json.Unmarshal(serializedLines, &lines)
+	return
+}
+
+func crawlAllLines(conn redis.Conn) []crawler.Line {
+	lines := crawler.CrawlLines()
+	serialized, _ := json.Marshal(lines)
+	conn.Do("SET", "allLines", serialized)
+
+	return lines
 }
 
 func main() {
 
 	conn, _ := redis.Dial("tcp", ":6379")
-	//download(conn)
-	//
-	lines := loadLines(conn)
-	fmt.Println(lines)
+	//start := time.Now()
 
-	allLinks := make([]string, 0)
-	for _, l := range lines {
-		tramHTML, _ := redis.String(conn.Do("GET", "wednesday/"+l.URL))
+	/* Load or crawl lines */
+	//lines := crawlAllLines(conn)
+	lines := loadAllLines(conn)
 
-		r := strings.NewReader(tramHTML)
-		line := l.HelperTestReaderVisit(r)
-		links := line.LinksToCrawl("")
-		fmt.Println(line)
-		allLinks = append(allLinks, links...)
+	//fmt.Println(len(lines))
+	//elapsed := time.Since(start)
+	//fmt.Printf("Took %s\n", elapsed)
 
+	//for _, l := range lines {
+	//	fmt.Println(l)
+	//}
+
+	schedules := crawler.CrawlSchedules(lines[:1])
+	for id, times := range schedules {
+		fmt.Printf("%v - > %v\n", id, times)
 	}
-	fmt.Println(len(allLinks))
-
-	//l := lines[1]
-	//l := crawler.LineBasicInfo{"119", "autobus/119", crawler.Bus}
-	//html, _ := redis.String(conn.Do("GET", "wednesday/"+l.URL))
-	//r := strings.NewReader(html)
-	//fmt.Println(l.HelperTestReaderVisit(r))
+	//seeds := make([]string, 0)
+	//for _, line := range savedLines[:1] {
+	//	scheduleIDs := line.ScheduleIDs()
+	//	for _, id := range scheduleIDs {
+	//		seeds = append(seeds, fmt.Sprintf("%v/%v", schedules_times_basic_url, id))
+	//	}
+	//}
+	//schedules := crawler.CrawlSchedules(seeds)
+	//fmt.Println(len(schedules))
+	//fmt.Println(len(seeds))
+	//elapsed2 := time.Since(start)
+	//fmt.Printf("All Took %s\n", elapsed2)
 }

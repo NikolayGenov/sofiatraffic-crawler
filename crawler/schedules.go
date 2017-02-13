@@ -1,20 +1,18 @@
 package crawler
 
-import (
-	"strings"
+import "strings"
 
-	"github.com/PuerkitoBio/goquery"
-)
+type ScheduleID string
 
-const SCHEDULE_LINKS_TIMES_SELECTOR = ".schedule_times tbody a"
+type ScheduleTimes []string
 
-func getNormalTimes(doc *goquery.Document) []string {
-	times := make([]string, 0)
-	doc.Find(SCHEDULE_LINKS_TIMES_SELECTOR).
-		Each(func(i int, s *goquery.Selection) {
-			times = append(times, strings.TrimSpace(s.Text()))
-		})
-	return times
+type Schedules map[ScheduleID]ScheduleTimes
+
+func convertToScheduleID(path string) ScheduleID {
+	//The path is in this format /server/html/schedule_load/{OperationID}/{DirectionID}/{StopSign}
+	//ScheduleID is in this format {OperationID}/{DirectionID}/{StopSign}
+	parts := strings.Split(path, "/")
+	return ScheduleID(strings.Join(parts[len(parts)-3:], "/"))
 }
 
 //func getNormalTimesOfTimes(doc *goquery.Document) [][]string {

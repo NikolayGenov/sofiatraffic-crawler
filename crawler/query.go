@@ -8,25 +8,6 @@ import (
 	"github.com/andybalholm/cascadia"
 )
 
-func getLinesBasicInfo(doc *goquery.Document) LinesBasicInfo {
-	l := LinesBasicInfo{}
-	doc.Find(".lines_section ul li a").
-		Each(func(i int, link *goquery.Selection) {
-			url, ok := link.Attr("href")
-			if !ok {
-				html, _ := link.Html()
-				panic(fmt.Errorf("Link should have 'href' attribute in order to process it, HTML: %v", html))
-			}
-			transportationString := strings.Split(url, "/")[0]
-			transportation, err := convertToTransportation(transportationString)
-			if err != nil {
-				panic(fmt.Errorf("Line MUST be one of required transporation types in order to be processed, given: %v", transportationString))
-			}
-			l = append(l, LineBasicInfo{Name: link.Text(), URL: url, Transportation: transportation})
-		})
-	return l
-}
-
 func getOperationsMap(doc *goquery.Document) OperationIDMap {
 	m := make(OperationIDMap)
 	doc.Find(".schedule_active_list_tabs li a").
@@ -109,4 +90,13 @@ func getStopURLAndID(url string) (string, string) {
 	url = url[:lastSlash]
 	id := url[firstSlash+1:]
 	return url, id
+}
+
+func getScheduleTimes(doc *goquery.Document) ScheduleTimes {
+	scheduleTimes := ScheduleTimes{}
+	doc.Find(".schedule_times tbody a").
+		Each(func(i int, s *goquery.Selection) {
+			scheduleTimes = append(scheduleTimes, strings.TrimSpace(s.Text()))
+		})
+	return scheduleTimes
 }

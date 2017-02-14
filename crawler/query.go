@@ -78,13 +78,13 @@ func getDirectionStops(operationSelection *goquery.Selection, directionID string
 			name, _ := getTextAndHref(stopSelection.Find(".stop_change"))
 			sign, url := getTextAndHref(stopSelection.Find(".stop_link"))
 			url, id := getStopURLAndID(url)
-			stops = append(stops, Stop{"", name, sign, id, url})
+			stops = append(stops, Stop{"", name, sign, id, url, VirtualTableStop{}})
 		})
 	return stops
 }
 
 func getStopURLAndID(url string) (string, string) {
-	//URL should be in this form : 'stop/{stop_id}/{stop_latin_name}#{integer_sign_name}'
+	//URL should be in this form : 'stopID/{stop_id}/{stop_latin_name}#{integer_sign_name}'
 	firstSlash := strings.Index(url, "/")
 	lastSlash := strings.LastIndex(url, "/")
 	url = url[:lastSlash]

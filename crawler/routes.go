@@ -23,6 +23,7 @@ type Stop struct {
 	Sign        string
 	ID          string
 	URL         string
+	VirtualTableStop
 }
 type Stops []Stop
 
@@ -40,8 +41,8 @@ func (s Stops) String() string {
 //FIXME - Long version
 //func (s Stops) String() string {
 //	var buffer bytes.Buffer
-//	for _, stop := range s {
-//		buffer.WriteString(fmt.Sprintln(stop))
+//	for _, stopID := range s {
+//		buffer.WriteString(fmt.Sprintln(stopID))
 //	}
 //	return buffer.String()
 //}

@@ -44,6 +44,7 @@ func (l *lineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *go
 			Path:                 path,
 			OperationIDMap:       getOperationsMap(doc),
 			OperationIDRoutesMap: getOperationIDRoutesMap(doc)}
+		//TODO potential race
 		*l.lines = append(*l.lines, line)
 
 	}

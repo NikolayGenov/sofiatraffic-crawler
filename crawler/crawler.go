@@ -7,12 +7,20 @@ import (
 )
 
 const (
-	schedulesMainURL            = "http://schedules.sofiatraffic.bg/"
-	userAgent                   = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/602.4.8 (KHTML, like Gecko) Version/10.0.3 Safari/602.4.8"
-	schedulesTimesBasicURL      = "http://schedules.sofiatraffic.bg/server/html/schedule_load"
-	virtualTablesURLPlaceholder = "http://m.sofiatraffic.bg/schedules?tt=%v&ln=%v&s=Търсене"
+	//Main source of information about Lines, Routes, Stops, and all kinds of IDs
+	schedulesMainURL = "http://schedules.sofiatraffic.bg/"
+
+	//URL to an internal endpoint that provided HTML only one route, with schedule times for one stop
+	schedulesTimesBasicURL = "http://schedules.sofiatraffic.bg/server/html/schedule_load"
+
+	//URL for a page that takes a POST form and returns HTML with real-time-sh times for each stop
 	virtualTableStopRealTimeURL = "http://m.sofiatraffic.bg/schedules/vehicle-vt"
-	numberOfWorkers             = 30
+
+	//Number of workers used for real-time-sh times crawling of Virtual Tables
+	numberOfWorkers = 30
+
+	//Some sample user agent that is used by the polite crawler
+	userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/602.4.8 (KHTML, like Gecko) Version/10.0.3 Safari/602.4.8"
 )
 
 //SofiaTrafficCrawler struct keep all useful data that is extracted during
@@ -20,12 +28,16 @@ const (
 type SofiaTrafficCrawler struct {
 	//Internal redis connection pool for persistence
 	redisPool *redis.Pool
+
 	//List of active lines that were found during crawling
 	Lines []Line
+
 	//Map with keys unique string of type {OperationID}/{DirectionID}/{StopSign}
 	Schedules map[ScheduleID]ScheduleTimes
+
 	//List of active stops found on virtual tables site during crawling
 	VirtualTableStops []VirtualTableStop
+
 	//Map between those found stops and a string of comma separated times of arrival of the next vehicle
 	VirtualTableStopsTimes map[VirtualTableStop]string
 }
@@ -49,7 +61,7 @@ func NewSofiaTrafficCrawler(redisAddress string) (*SofiaTrafficCrawler, error) {
 //transportation groups of links. Then for each found link, it parses the useful information and puts it
 //into Lines variable on the SofiaTrafficCrawler struct. In the end it saves that information in redis
 func (s *SofiaTrafficCrawler) CrawlLines() {
-	lineCrawler := newLineCrawler(&s.Lines)
+	lineCrawler := newLinesCrawler(&s.Lines)
 	lineCrawler.Run(schedulesMainURL)
 	s.saveLines()
 }
@@ -71,8 +83,7 @@ func (s *SofiaTrafficCrawler) CrawlSchedules(forNumberOfLines int) {
 	} else {
 		lines = s.Lines
 	}
-
-	links := buildSchedulesLinks(lines)
+	links := buildSchedulesSeeds(lines)
 	schedulesCrawler := newSchedulesCrawler(&s.Schedules)
 	schedulesCrawler.Run(links)
 	s.saveSchedules()
@@ -92,13 +103,18 @@ func (s *SofiaTrafficCrawler) CrawlVirtualTablesLines(operation Operation) {
 	if len(s.Lines) == 0 {
 		s.loadLines()
 	}
-	links := buildVirtualTablesLinks(s.Lines)
+	links := buildVirtualTablesSeeds(s.Lines)
 	vtCrawler := newVirtualTableLineCrawler(s.Lines, &s.VirtualTableStops, operation)
 	vtCrawler.Run(links)
 	s.saveVirtualTableStops()
 }
 
-//CrawlVirtualTablesStopsForTimes
+//CrawlVirtualTablesStopsForTimes stats a new crawl by using VirtualTableStops
+//If it is an empty list - it loads it if it can from redis
+//It uses simpler and faster crawler which visits only 1 type of page
+//process it's HTML by looking for specific ordering and extract comma separated times string
+//It takes as int parameter forNumberOfStops which says how many of the already loaded
+//virtual stops to crawl. If the parameter is 0 - it crawls all the available stops
 func (s *SofiaTrafficCrawler) CrawlVirtualTablesStopsForTimes(forNumberOfStops int) {
 	if len(s.VirtualTableStops) == 0 {
 		s.loadVirtualTableStops()
@@ -109,7 +125,6 @@ func (s *SofiaTrafficCrawler) CrawlVirtualTablesStopsForTimes(forNumberOfStops i
 	} else {
 		stops = s.VirtualTableStops
 	}
-
 	vtStopsCrawler := newVTStopCrawler(stops, &s.VirtualTableStopsTimes, s.redisPool)
 	vtStopsCrawler.createAndStartWorkers()
 	vtStopsCrawler.startDispatcher()
@@ -119,20 +134,31 @@ func (s *SofiaTrafficCrawler) CrawlVirtualTablesStopsForTimes(forNumberOfStops i
 
 }
 
-func buildSchedulesLinks(lines []Line) []string {
+//Create seed URLs in the format that Sofia Traffic's internal server requires
+//That format is represented here in ScheduleID
+//For each line there are plenty of potential schedule URLs that can be crawled
+//Returns a slice of all seed URLs
+func buildSchedulesSeeds(lines []Line) []string {
 	scheduleLinks := make([]string, 0)
 	for _, line := range lines {
-		for _, id := range line.ScheduleIDs() {
+		for _, id := range line.scheduleIDs() {
 			scheduleLinks = append(scheduleLinks, fmt.Sprintf("%v/%v", schedulesTimesBasicURL, id))
 		}
 	}
 	return scheduleLinks
 }
 
-func buildVirtualTablesLinks(lines []Line) []string {
-	scheduleLinks := make([]string, 0)
+//Create seed URLs in the format that Virtual Table line schedules requires
+//Information from a Line is enough to create one seed url for virtual tables line page
+//Returns a slice of all seed URLs
+func buildVirtualTablesSeeds(lines []Line) []string {
+	vtScheduleLinks := make([]string, 0)
 	for _, line := range lines {
-		scheduleLinks = append(scheduleLinks, fmt.Sprintf(virtualTablesURLPlaceholder, int(line.Transportation), line.Name))
+		vtScheduleLinks = append(vtScheduleLinks,
+			fmt.Sprintf(
+				"http://m.sofiatraffic.bg/schedules?tt=%v&ln=%v&s=Търсене",
+				int(line.Transportation),
+				line.Name))
 	}
-	return scheduleLinks
+	return vtScheduleLinks
 }

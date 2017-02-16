@@ -9,15 +9,15 @@ import (
 )
 
 //schedulesCrawler is extension to gocrawl. It takes a reference to a map with keys ScheduleID
-//and values ScheduleTimes
+// and values ScheduleTimes
 type schedulesCrawler struct {
 	gocrawl.DefaultExtender
 	schedules *map[ScheduleID]ScheduleTimes
 }
 
 //newSchedulesCrawler takes a reference to a map with keys ScheduleID
-//and values Schedule and creates an initialized instance of gocrawl.Crawler
-//with proper user agent, delay and log options set
+// and values Schedule and creates an initialized instance of gocrawl.Crawler
+// with proper user agent, delay and log options set
 func newSchedulesCrawler(schedules *map[ScheduleID]ScheduleTimes) *gocrawl.Crawler {
 	schedulesCrawler := &schedulesCrawler{
 		schedules: schedules}
@@ -30,8 +30,8 @@ func newSchedulesCrawler(schedules *map[ScheduleID]ScheduleTimes) *gocrawl.Crawl
 }
 
 //Visit crawls all seed URLs and for each URL it first have to regenerate the ScheduleID
-//Then search for the section where the schedules are shown and saves them to the map as a value
-//with key the corresponding ScheduleID
+// Then search for the section where the schedules are shown and saves them to the map as a value
+// with key the corresponding ScheduleID
 func (s *schedulesCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
 	scheduleID := convertToScheduleID(ctx.URL().Path)
 	scheduleTimes := getScheduleTimes(doc)

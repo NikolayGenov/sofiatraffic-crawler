@@ -24,7 +24,7 @@ const (
 )
 
 //SofiaTrafficCrawler struct keep all useful data that is extracted during
-//different crawls
+// different crawls
 type SofiaTrafficCrawler struct {
 	//Internal redis connection pool for persistence
 	redisPool *redis.Pool
@@ -43,8 +43,8 @@ type SofiaTrafficCrawler struct {
 }
 
 //NewSofiaTrafficCrawler creates an initialized NewSofiaTrafficCrawler struct that all crawler functions use
-//It takes an address to redis port that it uses for persistence e.g. ":6379"
-//Returns an error only of there is a problem with the redis connection which the function immediately tries to Dial
+// It takes an address to redis port that it uses for persistence e.g. ":6379"
+// Returns an error only of there is a problem with the redis connection which the function immediately tries to Dial
 func NewSofiaTrafficCrawler(redisAddress string) (*SofiaTrafficCrawler, error) {
 	pool := newPool(redisAddress)
 	c, err := pool.Dial()
@@ -58,8 +58,8 @@ func NewSofiaTrafficCrawler(redisAddress string) (*SofiaTrafficCrawler, error) {
 }
 
 //CrawlLines starts a new crawl from schedules.sofiatraffic.bg as seed link and search for all links that match all
-//transportation groups of links. Then for each found link, it parses the useful information and puts it
-//into Lines variable on the SofiaTrafficCrawler struct. In the end it saves that information in redis
+// transportation groups of links. Then for each found link, it parses the useful information and puts it
+// into Lines variable on the SofiaTrafficCrawler struct. In the end it saves that information in redis
 func (s *SofiaTrafficCrawler) CrawlLines() {
 	lineCrawler := newLinesCrawler(&s.Lines)
 	lineCrawler.Run(schedulesMainURL)
@@ -67,12 +67,12 @@ func (s *SofiaTrafficCrawler) CrawlLines() {
 }
 
 //CrawlSchedules starts a new crawl by first building all the needed links from Lines
-//If it is an empty list - it loads it if it can from redis
-//The pages it crawls are from direct link from which gives only the schedules for one stop id
-//When crawling it saves the information corresponding to ScheduleID - which is list of time of day (24 hours)
-//to a map which in the end saves to redis
-//It takes an int as a forNumberOfLines parameter which says how many of the found lines you want to crawl
-//If forNumberOfLines is 0 - it crawls all the lines for schedule information
+// If it is an empty list - it loads it if it can from redis
+// The pages it crawls are from direct link from which gives only the schedules for one stop id
+// When crawling it saves the information corresponding to ScheduleID - which is list of time of day (24 hours)
+// to a map which in the end saves to redis
+// It takes an int as a forNumberOfLines parameter which says how many of the found lines you want to crawl
+// If forNumberOfLines is 0 - it crawls all the lines for schedule information
 func (s *SofiaTrafficCrawler) CrawlSchedules(forNumberOfLines int) {
 	if len(s.Lines) == 0 {
 		s.loadLines()
@@ -90,15 +90,15 @@ func (s *SofiaTrafficCrawler) CrawlSchedules(forNumberOfLines int) {
 }
 
 //CrawlVirtualTablesLines starts a new crawl by using the existing data from Lines
-//If it is an empty list - it loads it if it can from redis
-//It then builds links for crawling each line page in Virtual tables site
-//Note that there is significant differences in the data between Virtual Tables and Schedules hosted by sofiatraffic.bg
-//Meaning that no routes or stops match and it uses Schedules Sofia traffic as main source and
-//only matches similar things in Virtual Tables site
-//It tries to parse and find all available stops for each line
-//When a stop is found it keeps it in the list VirtualTableStops - all the found active stops
-//It also updates the non capital name of a stop
-//In the end it saves the found stops in redis
+// If it is an empty list - it loads it if it can from redis
+// It then builds links for crawling each line page in Virtual tables site
+// Note that there is significant differences in the data between Virtual Tables and Schedules hosted by sofiatraffic.bg
+// Meaning that no routes or stops match and it uses Schedules Sofia traffic as main source and
+// only matches similar things in Virtual Tables site
+// It tries to parse and find all available stops for each line
+// When a stop is found it keeps it in the list VirtualTableStops - all the found active stops
+// It also updates the non capital name of a stop
+// In the end it saves the found stops in redis
 func (s *SofiaTrafficCrawler) CrawlVirtualTablesLines(operation Operation) {
 	if len(s.Lines) == 0 {
 		s.loadLines()
@@ -110,11 +110,11 @@ func (s *SofiaTrafficCrawler) CrawlVirtualTablesLines(operation Operation) {
 }
 
 //CrawlVirtualTablesStopsForTimes stats a new crawl by using VirtualTableStops
-//If it is an empty list - it loads it if it can from redis
-//It uses simpler and faster crawler which visits only 1 type of page
-//process it's HTML by looking for specific ordering and extract comma separated times string
-//It takes as int parameter forNumberOfStops which says how many of the already loaded
-//virtual stops to crawl. If the parameter is 0 - it crawls all the available stops
+// If it is an empty list - it loads it if it can from redis
+// It uses simpler and faster crawler which visits only 1 type of page
+// process it's HTML by looking for specific ordering and extract comma separated times string
+// It takes as int parameter forNumberOfStops which says how many of the already loaded
+// virtual stops to crawl. If the parameter is 0 - it crawls all the available stops
 func (s *SofiaTrafficCrawler) CrawlVirtualTablesStopsForTimes(forNumberOfStops int) {
 	if len(s.VirtualTableStops) == 0 {
 		s.loadVirtualTableStops()
@@ -135,9 +135,9 @@ func (s *SofiaTrafficCrawler) CrawlVirtualTablesStopsForTimes(forNumberOfStops i
 }
 
 //Create seed URLs in the format that Sofia Traffic's internal server requires
-//That format is represented here in ScheduleID
-//For each line there are plenty of potential schedule URLs that can be crawled
-//Returns a slice of all seed URLs
+// That format is represented here in ScheduleID
+// For each line there are plenty of potential schedule URLs that can be crawled
+// Returns a slice of all seed URLs
 func buildSchedulesSeeds(lines []Line) []string {
 	scheduleLinks := make([]string, 0)
 	for _, line := range lines {
@@ -149,8 +149,8 @@ func buildSchedulesSeeds(lines []Line) []string {
 }
 
 //Create seed URLs in the format that Virtual Table line schedules requires
-//Information from a Line is enough to create one seed url for virtual tables line page
-//Returns a slice of all seed URLs
+// Information from a Line is enough to create one seed url for virtual tables line page
+// Returns a slice of all seed URLs
 func buildVirtualTablesSeeds(lines []Line) []string {
 	vtScheduleLinks := make([]string, 0)
 	for _, line := range lines {

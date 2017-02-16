@@ -18,16 +18,16 @@ type Line struct {
 	Transportation `json:"transportation_type"`
 
 	//OperationIDMap is mapping between Operation and OperationID
-	//This is needed because each line has different number of Operation modes
+	// This is needed because each line has different number of Operation modes
 	OperationIDMap `json:"operation_id_map"`
 
 	//OperationIDRoutesMap is entry point to rest of the data for a given line
-	//namely a list of all of its routes
+	// namely a list of all of its routes
 	OperationIDRoutesMap `json:"operation_routes_map"`
 }
 
 //scheduleIDs creates a list of all possible valid ScheduleIDs for a line by iterating trough
-//all the line internal data
+// all the line internal data
 func (l *Line) scheduleIDs() []ScheduleID {
 	scheduleIDs := make([]ScheduleID, 0)
 	for operationID, routes := range l.OperationIDRoutesMap {

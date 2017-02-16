@@ -12,7 +12,7 @@ import (
 )
 
 //lineCrawler is extension to gocrawl. It takes a reference to a slice of Lines
-//It uses a mutex to prevent potential race condition if the crawler is to be concurrent
+// It uses a mutex to prevent potential race condition if the crawler is to be concurrent
 type lineCrawler struct {
 	gocrawl.DefaultExtender
 	lines *[]Line
@@ -20,8 +20,8 @@ type lineCrawler struct {
 }
 
 //newLinesCrawler takes a reference to a slice of lines and
-//creates a new initialized instance of gocrawl.Crawler
-//with proper user agent, delay and log options set
+// creates a new initialized instance of gocrawl.Crawler
+// with proper user agent, delay and log options set
 func newLinesCrawler(lines *[]Line) *gocrawl.Crawler {
 	lineCrawler := &lineCrawler{
 		lines: lines,

@@ -3,15 +3,15 @@ package crawler
 import "github.com/garyburd/redigo/redis"
 
 //stopTimesResponse is only used as a type for channel to return information from
-//times crawling
+// times crawling
 type stopTimesResponse struct {
 	stop  VirtualTableStop
 	times string
 }
 
 //vtStopCrawler is a custom made crawler just for the purpose of crawling
-//real-time-sh data from one endpoint.
-//The crawler makes only POST requests
+// real-time-sh data from one endpoint.
+// The crawler makes only POST requests
 type vtStopCrawler struct {
 	stopsQueue     chan VirtualTableStop
 	stopTimesQueue chan stopTimesResponse
@@ -40,7 +40,7 @@ func newVTStopCrawler(stops []VirtualTableStop, stopTimesMap *map[VirtualTableSt
 }
 
 //createAndStartWorkers crates a new worker and place it to its position
-//and only then starts it
+// and only then starts it
 func (v *vtStopCrawler) createAndStartWorkers() {
 	for i := range v.workers {
 		v.workers[i] = newWorker(i+1, v.workerQueue, v.stopTimesQueue, v.finishChan)
@@ -49,7 +49,7 @@ func (v *vtStopCrawler) createAndStartWorkers() {
 }
 
 //startDispatcher is taking work from the work queue (stop in this example)
-//then it finds a worker and gives that work to it by placing it in its channel
+// then it finds a worker and gives that work to it by placing it in its channel
 func (v *vtStopCrawler) startDispatcher() {
 	go func() {
 		for {
@@ -67,7 +67,7 @@ func (v *vtStopCrawler) startDispatcher() {
 }
 
 //enqueueStops takes all channels and puts them on the work queue
-//but it does it in a go routine so that it doesn't block anything else
+// but it does it in a go routine so that it doesn't block anything else
 func (v *vtStopCrawler) enqueueStops() {
 	go func() {
 		for _, stop := range v.stops {
@@ -76,9 +76,9 @@ func (v *vtStopCrawler) enqueueStops() {
 	}()
 }
 
-//waitForAllStops is waiting for all the stops to finish their work regardless of the result
-//For those that do return some useful result - it saves it both to a map with stop as key
-//and sends to redis hash set with key SofiaTraffic/stops
+//waitForAllStops is waiting for all the stops to finish their work regardless of the result.
+// For those that do return some useful result - it saves it both to a map with stop as key
+// and sends to redis hash set with key SofiaTraffic/stops
 func (v *vtStopCrawler) waitForAllStops() {
 	conn := v.pool.Get()
 	defer conn.Close()
@@ -93,7 +93,7 @@ func (v *vtStopCrawler) waitForAllStops() {
 	}
 }
 
-//stop sends a stop signal on all the workers and then closes dispatcher
+//stop sends a stop signal on all the workers and then closes dispatcher.
 func (v *vtStopCrawler) stop() {
 	for _, worker := range v.workers {
 		worker.stop()

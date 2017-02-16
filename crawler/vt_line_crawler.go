@@ -21,8 +21,8 @@ const (
 	stopRegexTemplate = `(.*) \((.+)\)`
 
 	//directionTrimmingRegexTemplate is used to remove all prefixes, suffixes that can be remove without using information
-	//about the direction name. This is done because of the really really different data from schedules.sofiatraffic.bg
-	//and m.sofiatraffic.bg. This does NOT solve all the cases - there are plenty of typos that can NOT be fixed.
+	// about the direction name. This is done because of the really really different data from schedules.sofiatraffic.bg
+	// and m.sofiatraffic.bg. This does NOT solve all the cases - there are plenty of typos that can NOT be fixed.
 	directionTrimmingRegexTemplate = `(Ж[.]?[ ]?К\.|ПЛ(\.|ОЩАД[А]?)|С(\.|ЕЛО)|ГР(\.|АД)|-УХО|ЦЕНТЪРА|КРАЯ НА |БУЛ. |ЛИФТ.|УЛ.|КВ[. ]?|[\- ."]+)`
 )
 
@@ -38,7 +38,7 @@ var (
 )
 
 //VirtualTableStop is used to make a request for real-time-sh times for a given stop
-//It is saved in Stop.VirtualTableStop, and there is a list of those only for query purposes
+// It is saved in Stop.VirtualTableStop, and there is a list of those only for query purposes
 type VirtualTableStop struct {
 	//Unique ID for a stop on m.sofiatraffic.bg logic
 	StopID string `json:"stop"`
@@ -58,10 +58,10 @@ func (v VirtualTableStop) String() string {
 }
 
 //vtLineCrawler is extension to gocrawl. It takes a slice of Lines, and a reference to a
-//slice of Virtual Table stops, and  which is going to be filled by the crawler, and operation
-//It uses operation because m.sofiatraffic.bg does not have all the data, and we know better
-//that some of the lines do not operate on certain operation modes.
-//It also uses a mutex to prevent potential race condition if the crawler is to be concurrent
+// slice of Virtual Table stops, and  which is going to be filled by the crawler, and operation
+// It uses operation because m.sofiatraffic.bg does not have all the data, and we know better
+// that some of the lines do not operate on certain operation modes.
+// It also uses a mutex to prevent potential race condition if the crawler is to be concurrent
 type vtLineCrawler struct {
 	gocrawl.DefaultExtender
 	Operation
@@ -71,9 +71,9 @@ type vtLineCrawler struct {
 }
 
 //newLinesCrawler takes a slice of lines, a creates a reference to a
-//slice of Virtual Table stops and operation type and returns an initialized gocrawl.Crawler
-//which is not the original gocrawl but a impolite crawler which ignores robots.txt
-//It also sets  proper user agent, delay and log options
+// slice of Virtual Table stops and operation type and returns an initialized gocrawl.Crawler
+// which is not the original gocrawl but a impolite crawler which ignores robots.txt
+// It also sets  proper user agent, delay and log options
 func newVirtualTableLineCrawler(lines []Line, crawlLInes *[]VirtualTableStop, operation Operation) *gocrawl.Crawler {
 	vtCr := &vtLineCrawler{
 		Lines:     lines,

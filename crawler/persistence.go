@@ -8,7 +8,7 @@ import (
 )
 
 //newPool returns a new initialized redis pool for connections
-//It takes address e.g ":6379" as a parameter and uses it in the Dial function
+// It takes address e.g ":6379" as a parameter and uses it in the Dial function
 func newPool(address string) *redis.Pool {
 	return &redis.Pool{
 		MaxIdle:     3,
@@ -34,7 +34,7 @@ func (s *SofiaTrafficCrawler) saveSchedules() {
 }
 
 //saveVirtualTableStops serializes the list of virtual table stops as json
-//and then sets to a key SofiaTraffic/vtstops in redis
+// and then sets to a key SofiaTraffic/vtstops in redis
 func (s *SofiaTrafficCrawler) saveVirtualTableStops() {
 	conn := s.redisPool.Get()
 	defer conn.Close()
@@ -43,7 +43,7 @@ func (s *SofiaTrafficCrawler) saveVirtualTableStops() {
 }
 
 //loadLines de-serializes the list of all lines from json back to list and loads it into
-//SofiaTrafficCrawler.Lines field
+// SofiaTrafficCrawler.Lines field
 func (s *SofiaTrafficCrawler) loadLines() {
 	conn := s.redisPool.Get()
 	defer conn.Close()
@@ -52,7 +52,7 @@ func (s *SofiaTrafficCrawler) loadLines() {
 }
 
 //loadSchedules de-serializes the map of all schedules from json back to map and loads it into
-//SofiaTrafficCrawler.Schedules field
+// SofiaTrafficCrawler.Schedules field
 func (s *SofiaTrafficCrawler) loadSchedules() {
 	conn := s.redisPool.Get()
 	defer conn.Close()

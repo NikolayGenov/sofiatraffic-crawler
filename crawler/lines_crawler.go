@@ -146,7 +146,7 @@ func getDirectionStops(operationSelection *goquery.Selection, directionID string
 		Each(func(i int, stopSelection *goquery.Selection) {
 			name, _ := getTextAndHref(stopSelection.Find(".stop_change"))
 			sign, url := getTextAndHref(stopSelection.Find(".stop_link"))
-			url, id := getStopURLAndID(url)
+			_, id := getStopURLAndID(url)
 			stops = append(stops, Stop{"", name, sign, id, VirtualTableStop{}})
 		})
 	return stops

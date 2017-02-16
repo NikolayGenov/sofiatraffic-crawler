@@ -43,7 +43,7 @@ type Stop struct {
 	VirtualTableStop `json:"vt_stop"`
 }
 
-//Stop is a simple list of stops
+//Stops is a simple list of stops
 //It was created as alias to simplify printing and usage instead of slice
 type Stops []Stop
 
@@ -61,15 +61,8 @@ type Routes []Route
 func (s *Stop) String() string {
 	return fmt.Sprintf("[%v] %v (%v)", s.Sign, s.CapitalName, s.ID)
 }
-func (s Stops) String() string {
-	str := ""
-	for _, stop := range s {
-		str += fmt.Sprintf("[%v](%v) ", stop.Sign, stop.ID)
-	}
-	return str
-}
 
-func (s Stops) LongString() string {
+func (s Stops) String() string {
 	var buffer bytes.Buffer
 	for _, stop := range s {
 		buffer.WriteString(fmt.Sprintln(&stop))
@@ -78,7 +71,7 @@ func (s Stops) LongString() string {
 }
 
 func (r Route) String() string {
-	return fmt.Sprintf("\n%v (%v)\n%v", r.Name, r.ID, r.Stops.LongString())
+	return fmt.Sprintf("\n%v (%v)\n%v", r.Name, r.ID, r.Stops)
 }
 
 func (r Routes) String() string {

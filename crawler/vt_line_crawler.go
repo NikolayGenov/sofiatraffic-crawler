@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 
 	"github.com/NikolayGenov/gocrawl" //Because this one ignores robots.txt
 	"github.com/PuerkitoBio/goquery"
@@ -25,17 +26,37 @@ var (
 )
 
 type VirtualTableStop struct {
-	StopID             string         `json:"stop"`
-	LineID             string         `json:"lid"`
-	RouteID            string         `json:"rid"`
-	TransportationType Transportation `json:"vt"`
+	StopID             string `json:"stop"`
+	LineID             string `json:"lid"`
+	RouteID            string `json:"rid"`
+	TransportationType string `json:"vt"`
+}
+
+func (v VirtualTableStop) String() string {
+	return fmt.Sprintf("%v/%v/%v/%v", v.TransportationType, v.RouteID, v.LineID, v.StopID)
 }
 
 type vtLineCrawler struct {
 	gocrawl.DefaultExtender
 	Operation
-	Lines   *[]Line
+	Lines   []Line
 	vtLines *[]VirtualTableStop
+	mutex   *sync.Mutex
+}
+
+func newVirtualTableLineCrawler(lines []Line, crawlLInes *[]VirtualTableStop, operation Operation) runStopCapable {
+	vtCr := &vtLineCrawler{
+		Lines:     lines,
+		vtLines:   crawlLInes,
+		Operation: operation,
+		mutex:     &sync.Mutex{}}
+	opts := gocrawl.NewOptions(vtCr)
+	opts.UserAgent = user_agent
+	opts.CrawlDelay = 0
+	opts.MaxVisits = 0
+	opts.LogFlags = gocrawl.LogError
+	opts.SameHostOnly = true
+	return gocrawl.NewCrawlerWithOptions(opts)
 }
 
 func findLine(lines []Line, transportation Transportation, name string) (*Line, error) {
@@ -102,7 +123,7 @@ func (v *vtLineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *
 		log.Printf("There was an error parsing [%v] to line type and name, error: %v\n", url, err)
 		return nil, false
 	}
-	line, err := findLine(*v.Lines, transportation, lineName)
+	line, err := findLine(v.Lines, transportation, lineName)
 	if err != nil {
 		log.Printf("There was an error finding line [%v %v], error: %v\n", transportation, lineName, err)
 		return nil, false
@@ -128,13 +149,17 @@ func (v *vtLineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *
 			log.Printf("There was an error finding route with name [%v], error: %v\n", directionString, err)
 			return
 		}
-		var lineID, routeID string
+		var lineID, routeID, transportationType string
 		if lineID, err = getValueFromInput(routeSelection, "lid"); err != nil {
 			log.Printf("Error input lineID on route [%v] with error: %v", route.Name, err)
 			return
 		}
 		if routeID, err = getValueFromInput(routeSelection, "rid"); err != nil {
 			log.Printf("Error input routeID on route [%v] with error: %v", route.Name, err)
+			return
+		}
+		if transportationType, err = getValueFromInput(routeSelection, "vt"); err != nil {
+			log.Printf("Error input vt on route [%v] with error: %v", route.Name, err)
 			return
 		}
 		routeSelection.Find("option").Each(func(i int, stopSelection *goquery.Selection) {
@@ -161,30 +186,18 @@ func (v *vtLineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *
 			vtStop := VirtualTableStop{
 				StopID:             vtStopID,
 				LineID:             lineID,
-				TransportationType: transportation,
+				TransportationType: transportationType,
 				RouteID:            routeID}
 
 			stop.VirtualTableStop = vtStop
 			//Update name because it is the empty string for now
 			stop.Name = stopName
-
 			vtRoutesStops = append(vtRoutesStops, vtStop)
 		})
 	})
 
-	//TODO - potential RACE CONDITION
+	v.mutex.Lock()
 	*v.vtLines = append(*v.vtLines, vtRoutesStops...)
+	v.mutex.Unlock()
 	return nil, false
-}
-
-func newVirtualTableLineCrawler(lines *[]Line, crawlLInes *[]VirtualTableStop, operation Operation) crawlable {
-	vtCr := &vtLineCrawler{Lines: lines, vtLines: crawlLInes, Operation: operation}
-	opts := gocrawl.NewOptions(vtCr)
-	opts.UserAgent = user_agent
-	opts.CrawlDelay = 0
-	opts.MaxVisits = 0
-	opts.LogFlags = gocrawl.LogError
-	opts.SameHostOnly = true
-	c := gocrawl.NewCrawlerWithOptions(opts)
-	return c
 }

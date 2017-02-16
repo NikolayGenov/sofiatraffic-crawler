@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"strings"
 
+	"sync"
+
 	"github.com/PuerkitoBio/gocrawl"
 	"github.com/PuerkitoBio/goquery"
 )
@@ -12,6 +14,19 @@ import (
 type lineCrawler struct {
 	gocrawl.DefaultExtender
 	lines *[]Line
+	mutex *sync.Mutex
+}
+
+func newLineCrawler(lines *[]Line) runStopCapable {
+	lineCrawler := &lineCrawler{
+		lines: lines,
+		mutex: &sync.Mutex{}}
+	opts := gocrawl.NewOptions(lineCrawler)
+	opts.UserAgent = user_agent
+	opts.CrawlDelay = 0
+	opts.LogFlags = gocrawl.LogError
+	opts.SameHostOnly = true
+	return gocrawl.NewCrawlerWithOptions(opts)
 }
 
 func (l *lineCrawler) Filter(ctx *gocrawl.URLContext, isVisited bool) bool {
@@ -44,20 +59,9 @@ func (l *lineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *go
 			Path:                 path,
 			OperationIDMap:       getOperationsMap(doc),
 			OperationIDRoutesMap: getOperationIDRoutesMap(doc)}
-		//TODO potential race
+		l.mutex.Lock()
 		*l.lines = append(*l.lines, line)
-
+		l.mutex.Unlock()
 	}
 	return nil, true
-}
-
-func newLineCrawler(lines *[]Line) crawlable {
-	lineCrawler := &lineCrawler{lines: lines}
-	opts := gocrawl.NewOptions(lineCrawler)
-	opts.UserAgent = user_agent
-	opts.CrawlDelay = 0
-	opts.LogFlags = gocrawl.LogError
-	opts.SameHostOnly = true
-	c := gocrawl.NewCrawlerWithOptions(opts)
-	return c
 }

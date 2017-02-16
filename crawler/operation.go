@@ -2,30 +2,30 @@ package crawler
 
 import "fmt"
 
-//Operation is used to denote different Line Operation modes [Normal, Pre Holiday, Holiday]
+//Operation is used to denote different Line Operation modes [Normal, Pre Holiday, Holiday].
 type Operation int
 
 //OperationID is unique ID taken from schedules.sofiatraffic.bg, which is a combination of line
-// and its Operation mode. One line can have multiple OperationIDs so we use OperationIDMap
+// and its Operation mode. One line can have multiple OperationIDs so we use OperationIDMap.
 type OperationID string
 
-//OperationIDMap is mapping between Operation and OperationID
+//OperationIDMap is mapping between Operation and OperationID.
 // This is needed because each line has different number of Operation modes
-// raging from 0 modes to 3 different modes and each one has unique OperationID
+// raging from 0 modes to 3 different modes and each one has unique OperationID.
 type OperationIDMap map[Operation]OperationID
 
 const (
-	//Normal operation mode denotes regular everyday operation of the line - normally Weekdays
+	//Normal operation mode denotes regular everyday operation of the line,normally Weekdays.
 	// But it also can be all week
 	Normal Operation = iota
 
 	//PreHoliday operation mode denotes a period (usually a day) before big holiday or usually Saturday if
-	// there is a different times of operation for Holiday
+	// there is a different times of operation for Holiday.
 	PreHoliday
 
-	//Holiday operation mode denotes holiday mode of operation and times
+	//Holiday operation mode denotes holiday mode of operation and times.
 	// Usually Sunday, but can be any official holiday, also used when there is no difference in
-	// time of operation with PreHoliday
+	// time of operation with PreHoliday.
 	Holiday
 )
 

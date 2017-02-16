@@ -37,19 +37,19 @@ var (
 	directionTrimmingRegex = regexp.MustCompile(directionTrimmingRegexTemplate)
 )
 
-//VirtualTableStop is used to make a request for real-time-sh times for a given stop
-// It is saved in Stop.VirtualTableStop, and there is a list of those only for query purposes
+//VirtualTableStop is used to make a request for real-time-sh times for a given stop.
+// It is saved in Stop.VirtualTableStop, and there is a list of those only for query purposes.
 type VirtualTableStop struct {
-	//Unique ID for a stop on m.sofiatraffic.bg logic
+	//Unique ID for a stop on m.sofiatraffic.bg logic.
 	StopID string `json:"stop"`
 
-	//Line ID for the given stop on m.sofiatraffic.bg logic
+	//Line ID for the given stop on m.sofiatraffic.bg logic.
 	LineID string `json:"lid"`
 
-	//Route ID for the given line on m.sofiatraffic.bg logic
+	//Route ID for the given line on m.sofiatraffic.bg logic.
 	RouteID string `json:"rid"`
 
-	//TransportationType matches Line.Transportation but is kept here for easy string access
+	//TransportationType matches Line.Transportation but is kept here for easy string access.
 	TransportationType string `json:"vt"`
 }
 

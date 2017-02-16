@@ -14,15 +14,15 @@ type Line struct {
 	//Name is the name of the line - e.g "85", "44-Б", "7-А", etc
 	Name string `json:"name"`
 
-	//Transportation is denoting the type of Transportation of a line e.g Tram
+	//Transportation is denoting the type of Transportation of a line e.g Tram.
 	Transportation `json:"transportation_type"`
 
-	//OperationIDMap is mapping between Operation and OperationID
-	// This is needed because each line has different number of Operation modes
+	//OperationIDMap is mapping between Operation and OperationID.
+	// This is needed because each line has different number of Operation modes.
 	OperationIDMap `json:"operation_id_map"`
 
 	//OperationIDRoutesMap is entry point to rest of the data for a given line
-	// namely a list of all of its routes
+	// namely a list of all of its routes.
 	OperationIDRoutesMap `json:"operation_routes_map"`
 }
 

@@ -9,14 +9,14 @@ import (
 
 type schedulesCrawler struct {
 	gocrawl.DefaultExtender
-	Schedules
+	schedules *map[ScheduleID]ScheduleTimes
 }
 
-func newSchedulesCrawler(schedules Schedules) runStopCapable {
+func newSchedulesCrawler(schedules *map[ScheduleID]ScheduleTimes) *gocrawl.Crawler {
 	schedulesCrawler := &schedulesCrawler{
-		Schedules: schedules}
+		schedules: schedules}
 	opts := gocrawl.NewOptions(schedulesCrawler)
-	opts.UserAgent = user_agent
+	opts.UserAgent = userAgent
 	opts.CrawlDelay = 0
 	opts.LogFlags = gocrawl.LogError
 	opts.SameHostOnly = true
@@ -26,6 +26,6 @@ func newSchedulesCrawler(schedules Schedules) runStopCapable {
 func (s *schedulesCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
 	scheduleID := convertToScheduleID(ctx.URL().Path)
 	scheduleTimes := getScheduleTimes(doc)
-	s.Schedules[scheduleID] = scheduleTimes
+	(*s.schedules)[scheduleID] = scheduleTimes
 	return nil, false
 }

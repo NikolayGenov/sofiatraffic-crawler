@@ -44,14 +44,14 @@ type vtLineCrawler struct {
 	mutex   *sync.Mutex
 }
 
-func newVirtualTableLineCrawler(lines []Line, crawlLInes *[]VirtualTableStop, operation Operation) runStopCapable {
+func newVirtualTableLineCrawler(lines []Line, crawlLInes *[]VirtualTableStop, operation Operation) *gocrawl.Crawler {
 	vtCr := &vtLineCrawler{
 		Lines:     lines,
 		vtLines:   crawlLInes,
 		Operation: operation,
 		mutex:     &sync.Mutex{}}
 	opts := gocrawl.NewOptions(vtCr)
-	opts.UserAgent = user_agent
+	opts.UserAgent = userAgent
 	opts.CrawlDelay = 0
 	opts.MaxVisits = 0
 	opts.LogFlags = gocrawl.LogError

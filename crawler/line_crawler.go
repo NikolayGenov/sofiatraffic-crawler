@@ -17,12 +17,12 @@ type lineCrawler struct {
 	mutex *sync.Mutex
 }
 
-func newLineCrawler(lines *[]Line) runStopCapable {
+func newLineCrawler(lines *[]Line) *gocrawl.Crawler {
 	lineCrawler := &lineCrawler{
 		lines: lines,
 		mutex: &sync.Mutex{}}
 	opts := gocrawl.NewOptions(lineCrawler)
-	opts.UserAgent = user_agent
+	opts.UserAgent = userAgent
 	opts.CrawlDelay = 0
 	opts.LogFlags = gocrawl.LogError
 	opts.SameHostOnly = true

@@ -1,58 +1,86 @@
 package crawler
 
-import (
-	"log"
-	"net/http"
-	"net/url"
+import "github.com/garyburd/redigo/redis"
 
-	"golang.org/x/net/html"
-)
+type stopTimesResponse struct {
+	stop  VirtualTableStop
+	times string
+}
 
-func crawlStop(stop VirtualTableStop) {
-	resp, err := http.PostForm(virtual_table_stop_real_time_link,
-		url.Values{
-			"vt":   {stop.TransportationType},
-			"rid":  {stop.RouteID},
-			"lid":  {stop.LineID},
-			"stop": {stop.StopID}})
+type vtStopCrawler struct {
+	stopsQueue     chan VirtualTableStop
+	stopTimesQueue chan stopTimesResponse
+	workerQueue    chan chan VirtualTableStop
+	workers        []worker
+	done           chan struct{}
+	finishChan     chan struct{}
+	stops          []VirtualTableStop
+	pool           *redis.Pool
+	stopTimesMap   *map[VirtualTableStop]string
+}
 
-	defer func() {
-		finishedQueue <- struct{}{}
-	}()
+func newVTStopCrawler(stops []VirtualTableStop, stopTimesMap *map[VirtualTableStop]string, pool *redis.Pool) *vtStopCrawler {
+	return &vtStopCrawler{
+		stopsQueue:     make(chan VirtualTableStop, numberOfWorkers*2),
+		stopTimesQueue: make(chan stopTimesResponse, numberOfWorkers*2),
+		finishChan:     make(chan struct{}),
+		workerQueue:    make(chan chan VirtualTableStop),
+		workers:        make([]worker, numberOfWorkers),
+		done:           make(chan struct{}),
+		pool:           pool,
+		stops:          stops,
+		stopTimesMap:   stopTimesMap}
 
-	if err != nil {
-		log.Printf("Failed to fetch stop [stop: %v rid: %v lid: %v vt: %v]", stop.StopID, stop.RouteID, stop.LineID, stop.TransportationType)
-		return
+}
+
+func (v *vtStopCrawler) createAndStartWorkers() {
+	for i := range v.workers {
+		v.workers[i] = newWorker(i+1, v.workerQueue, v.stopTimesQueue, v.finishChan)
+		v.workers[i].start()
 	}
+}
 
-	body := resp.Body
-	defer body.Close()
-
-	boldCounter := 0
-	tokenizer := html.NewTokenizer(body)
-
-	for {
-		tokenType := tokenizer.Next()
-
-		switch {
-		case tokenType == html.ErrorToken:
-			return
-		case tokenType == html.StartTagToken:
-			token := tokenizer.Token()
-
-			isBold := token.Data == "b"
-			if !isBold {
-				continue
-			}
-
-			boldCounter++
-			if boldCounter == stop_times_position_on_page_relative_to_bolds {
-				if html.EndTagToken != tokenizer.Next() {
-					workResponseQueues <- workResponse{stop, string(tokenizer.Raw())}
-					return
-				}
+func (v *vtStopCrawler) startDispatcher() {
+	go func() {
+		for {
+			select {
+			case stop := <-v.stopsQueue:
+				go func() {
+					worker := <-v.workerQueue
+					worker <- stop
+				}()
+			case <-v.done:
 				return
 			}
 		}
+	}()
+}
+func (v *vtStopCrawler) enqueueStops() {
+	go func() {
+		for _, stop := range v.stops {
+			v.stopsQueue <- stop
+		}
+	}()
+}
+
+func (v *vtStopCrawler) waitForAllStops() {
+	conn := v.pool.Get()
+	defer conn.Close()
+	for c := 0; c < len(v.stops); {
+		select {
+		case stopResponse := <-v.stopTimesQueue:
+			(*v.stopTimesMap)[stopResponse.stop] = stopResponse.times
+			conn.Do("HSET", "stops", stopResponse.stop, stopResponse.times)
+		case <-v.finishChan:
+			c++
+
+		}
 	}
+}
+
+func (v *vtStopCrawler) stop() {
+	for _, worker := range v.workers {
+		worker.stop()
+	}
+	close(v.done)
 }

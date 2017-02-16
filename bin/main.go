@@ -16,7 +16,7 @@ func main() {
 	start := time.Now()
 	//st.CrawlLines()
 	//st.CrawlSchedules(1)
-
+	//fmt.Println(st.Schedules)
 	//st.CrawlVirtualTablesLines(crawler.Operation_Normal)
 	//fmt.Println(len(st.VirtualTableStops))
 	st.CrawlVirtualTablesStopsForTimes(100)

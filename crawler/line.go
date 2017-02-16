@@ -11,7 +11,7 @@ type OperationIDRoutesMap map[OperationID]Routes
 
 //Line contains all the useful (and not so useful) information about a public transportation line
 type Line struct {
-	//Name is the name of the line - e.g "85", "44-Б", "7-А", etc
+	//Name is the name of the line - e.g "85", "44-Б", "7-А", etc.
 	Name string `json:"name"`
 
 	//Transportation is denoting the type of Transportation of a line e.g Tram.

@@ -16,7 +16,7 @@ type OperationIDMap map[Operation]OperationID
 
 const (
 	//Normal operation mode denotes regular everyday operation of the line,normally Weekdays.
-	// But it also can be all week
+	// But it also can be all week.
 	Normal Operation = iota
 
 	//PreHoliday operation mode denotes a period (usually a day) before big holiday or usually Saturday if

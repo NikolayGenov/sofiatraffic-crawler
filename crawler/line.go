@@ -42,14 +42,6 @@ func (l *Line) scheduleIDs() []ScheduleID {
 	return scheduleIDs
 }
 
-func (o *OperationIDMap) String() string {
-	s := ""
-	for operation, id := range *o {
-		s += fmt.Sprintf("%v (%v)\n", operation, id)
-	}
-	return s
-}
-
 func (o *OperationIDRoutesMap) String() string {
 	var buffer bytes.Buffer
 	for id, routes := range *o {
@@ -59,5 +51,5 @@ func (o *OperationIDRoutesMap) String() string {
 }
 
 func (l *Line) String() string {
-	return fmt.Sprintf("%v '%v'\n%v%v", l.Transportation, l.Name, l.OperationIDMap, l.OperationIDRoutesMap)
+	return fmt.Sprintf("%v '%v'\n%v%v", l.Transportation, l.Name, &l.OperationIDMap, &l.OperationIDRoutesMap)
 }

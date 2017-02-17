@@ -1,0 +1,1511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="LogicaSoft framework v4.0" />
+    <meta name="Description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="language" content=", " />
+    <meta http-equiv="content-language" content=", " />
+    <meta name="robots" content="index, follow" />
+    <meta name="revisit-after" content="20 days" />
+    <meta name="rating" content="General" />
+
+    <title>ЦГМ - Разписания - </title>
+    <base href="http://schedules.sofiatraffic.bg/" />
+
+</head>
+<body>
+<!-- Begin Wrapper -->
+<div id="wrapper" class="wrapper">
+
+    <!-- Begin Header -->
+    <div class="header">
+        <a class="quicksearch" href="./">Начало</a>
+
+        <form id="quicksearch_stop" class="quicksearch" onsubmit="Raz.exec ('findStop', [this]); return false;">
+            <label for="quicksearch_stop_name">Име на спирка:</label>
+            <button>&raquo;</button>
+            <input id="quicksearch_stop_name" name="stop_name" />
+        </form>
+
+        <form id="quicksearch_stop_sign" class="quicksearch" onsubmit="Raz.exec ('findStopSign', [this]); return false;">
+            <label for="quicksearch_stop_sign">Спирка №:</label>
+            <button>&raquo;</button>
+            <input id="quicksearch_stop_sign" name="stop_sign" />
+        </form>
+
+        <form id="quicksearch_tm" class="quicksearch" onsubmit="Raz.exec ('findLine', [this]); return false;">
+            <label for="quicksearch_tm_number">Трамвай №:</label>
+            <input type="hidden" name="line_type" value="tramway" />
+            <button>&raquo;</button>
+            <input id="quicksearch_tm_number" name="number" />
+        </form>
+
+        <form id="quicksearch_tb" class="quicksearch" onsubmit="Raz.exec ('findLine', [this]); return false;">
+            <label for="quicksearch_tb_number">Тролейбус №:</label>
+            <input type="hidden" name="line_type" value="trolleybus" />
+            <button>&raquo;</button>
+            <input id="quicksearch_tb_number" name="number" />
+        </form>
+
+        <form id="quicksearch_autobus" class="quicksearch" onsubmit="Raz.exec ('findLine', [this]); return false;">
+            <label for="quicksearch_autobus_number">Автобус №:</label>
+            <input type="hidden" name="line_type" value="autobus" />
+            <button>&raquo;</button>
+            <input id="quicksearch_autobus_number" name="number" />
+        </form>
+
+        <a class="quicksearch" href="metro/1">Метро</a>
+    </div>
+    <div id="content" class="content">
+        <div id="line_view">
+            <h2>
+                <a class="help" href="#" onclick="Raz.exec ('help', ['line_view']); return false;"><img class="tooltip" src="web/img/public/help_icon.gif" alt="Помощна информация" /></a>
+                <a class="print" href="#" onclick="Raz.exec ('print', ['line_view']); return false;"><img class="tooltip" src="web/img/public/print_icon.gif" alt="Печат" /></a>
+                трамвайна линия 1	</h2>
+            <div id="line_schedules"><div id="schedule_active_list" class="schedule_active_list">
+                <ul class="schedule_active_list_tabs">
+                    <li><a href="#"
+                           id="schedule_6671_button"
+                           class="schedule_active_list_active_tab schedule_active_list_tab"
+                    >
+                    </a>
+                    </li>
+                    <li><a href="#"
+
+                           class=" schedule_active_list_tab"
+                    >
+                    </a>
+                    </li>
+                </ul>
+                <div id="schedule_6671_content" class="schedule_active_list_content">
+                    <h3>делник - в сила от <em>15.08.2016</em>.							</h3>
+                    <div class="schedule_view">
+                        <ul class="schedule_view_direction_tabs">
+                            <li>
+                                <a href="/tramway/1#direction/2696" id="schedule_direction_6671_2696_button" class="schedule_view_direction_active_tab schedule_view_direction_tab">
+                                    <span>Надлез Надежда - ж.к. Иван Вазов</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tramway/1#direction/2697" id="schedule_direction_6671_2697_button" class="schedule_view_direction_tab">
+                                    <span>Ж.к. Иван Вазов - надлез Надежда</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="schedule_view_route">
+                            <div class="schedule_view_route_directions">
+                                <div id="schedule_direction_6671_2696_content" class="schedule_view_direction_content">
+                                    <div class="schedule_direction_sign_wrapper">
+                                        <a href="#" class="stop_map" onclick="Logi.DOM.Element.toggleClass ('content', 'stop_map_see'); return false;">
+                                            <img class="tooltip preview" src="web/img/public/map_icon.gif" alt="Виж на картата" />
+                                            <!-- <img id="schedule_6671_direction_2696_current_sign_map" class="tooltip map" src="http://www.bgmaps.com/old/tplimage.ashx?tplname=skgt&key=1113" alt="затвори" /> -->
+                                            <img id="schedule_6671_direction_2696_current_sign_map" class="tooltip map" src="http://www.bgmaps.com/templates/skgt/img/1113" alt="затвори" />
+                                        </a>
+
+                                        <span>От спирка:</span>
+                                        <a href="#" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); return false;" onmouseover="var el = event.relatedTarget || event.fromElement; var pn = el.parentNode; if (el != this && pn != this) { Logi.DOM.Element.show ('schedule_6671_direction_2696_signs'); } return false;" id="schedule_6671_direction_2696_current_sign" class="schedule_direction_sign">
+		<span id="schedule_6671_direction_2696_current_sign_name">
+			НАДЛЕЗ НАДЕЖДА (1113)
+		</span>
+                                            <img src="web/img/public/open_signs.gif" alt="v" />
+                                        </a>
+                                        <ul onmouseout="var el = event.relatedTarget || event.toElement; var pn = el.parentNode; if (el != this && pn != this && pn.parentNode != this) { Logi.DOM.Element.hide ('schedule_6671_direction_2696_signs'); }; return false;" id="schedule_6671_direction_2696_signs" class="schedule_direction_signs">
+                                            <li class="current_sign stop_959">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_1113_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_1113_stop" href="stop/959/nadlez-nadezhda#1113">1113</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_1113" href="/tramway/1#sign/2696/1113" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">НАДЛЕЗ НАДЕЖДА</a>
+                                            </li>
+                                            <li class=" stop_565">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_1254_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_1254_stop" href="stop/565/peta-gradska-bolnica#1254">1254</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_1254" href="/tramway/1#sign/2696/1254" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">ПЕТА ГРАДСКА БОЛНИЦА</a>
+                                            </li>
+                                            <li class=" stop_586">
+
+
+
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_1331_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_1331_stop" href="stop/586/centralna-gara#1331">1331</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_1331" href="/tramway/1#sign/2696/1331" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">ЦЕНТРАЛНА ГАРА</a>
+                                            </li>
+                                            <li class=" stop_904">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_1993_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_1993_stop" href="stop/904/ul-klokotnica#1993">1993</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_1993" href="/tramway/1#sign/2696/1993" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">УЛ. КЛОКОТНИЦА</a>
+                                            </li>
+                                            <li class=" stop_175">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_377_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_377_stop" href="stop/175/bul-slivnica#377">0377</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_377" href="/tramway/1#sign/2696/377" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">БУЛ. СЛИВНИЦА</a>
+                                            </li>
+                                            <li class=" stop_958">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_2112_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_2112_stop" href="stop/958/ul-pirotska#2112">2112</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_2112" href="/tramway/1#sign/2696/2112" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">УЛ. ПИРОТСКА</a>
+                                            </li>
+                                            <li class=" stop_575">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_1282_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_1282_stop" href="stop/575/pl-makedoniya#1282">1282</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_1282" href="/tramway/1#sign/2696/1282" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">ПЛ. МАКЕДОНИЯ</a>
+                                            </li>
+                                            <li class=" stop_171">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_364_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_364_stop" href="stop/171/bul-praga#364">0364</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_364" href="/tramway/1#sign/2696/364" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">БУЛ. ПРАГА</a>
+                                            </li>
+                                            <li class=" stop_515">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_1134_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_1134_stop" href="stop/515/ndk#1134">1134</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_1134" href="/tramway/1#sign/2696/1134" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">НДК</a>
+                                            </li>
+                                            <li class=" stop_168">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_356_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_356_stop" href="stop/168/bul-pencho-slaveykov#356">0356</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_356" href="/tramway/1#sign/2696/356" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">БУЛ. ПЕНЧО СЛАВЕЙКОВ</a>
+                                            </li>
+                                            <li class=" stop_5">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_11_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_11_stop" href="stop/5/14-ti-dkc#11">0011</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_11" href="/tramway/1#sign/2696/11" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">14-ТИ ДКЦ</a>
+                                            </li>
+                                            <li class=" stop_417">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_929_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_929_stop" href="stop/417/chitalishte-d-r-p-beron#929">0929</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_929" href="/tramway/1#sign/2696/929" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">ЧИТАЛИЩЕ Д-Р П. БЕРОН</a>
+                                            </li>
+                                            <li class=" stop_286">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2696_sign_625_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2696_sign_625_stop" href="stop/286/zh-k-ivan-vazov#625">0625</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2696_sign_625" href="/tramway/1#sign/2696/625" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2696_signs'); $el ('schedule_6671_direction_2696_current_sign_name').innerHTML = this.innerHTML;">Ж.К. ИВАН ВАЗОВ</a>
+                                            </li>
+                                        </ul>
+                                        <a id="schedule_6671_direction_2696_current_sign_transfers" href="/tramway/1#transfers/1113" onclick="Raz.exec ('stop_transfers', [this.href]); return false;" class="stop_transfers"><img class="tooltip" src="web/img/public/transfer.png" alt="Прекачвания" /></a>
+                                    </div>										<div id="schedule_direction_6671_2696_container" class="schedule_view_direction_container">
+                                    <h6>Надлез Надежда - ж.к. Иван Вазов</h6>
+                                    <div class="schedule_view_direction">
+                                        <div id="8de7647c0_course" class="schedule_direction_view_course">
+                                            <table>
+                                                <col style="width: 45px;" />
+                                                <col />
+                                                <col style="width: 50px;" />
+                                                <tr>
+                                                    <td colspan="2">&nbsp;</td>
+                                                    <td><a href="#" onclick="Logi.DOM.Element.hide ('8de7647c0_course'); return false;">затвори</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/959/nadlez-nadezhda#1113">1113</a>
+                                                    </td>
+                                                    <th>НАДЛЕЗ НАДЕЖДА | <em>1113&nbsp;</em></th>
+                                                    <td class="time_column"><input id="8de7647c0_1" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/565/peta-gradska-bolnica#1254">1254</a>
+                                                    </td>
+                                                    <td>ПЕТА ГРАДСКА БОЛНИЦА | <em>1254&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_2" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/586/centralna-gara#1331">1331</a>
+                                                    </td>
+                                                    <td>ЦЕНТРАЛНА ГАРА | <em>1331&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_3" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/904/ul-klokotnica#1993">1993</a>
+                                                    </td>
+                                                    <td>УЛ. КЛОКОТНИЦА | <em>1993&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_4" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/175/bul-slivnica#377">0377</a>
+                                                    </td>
+                                                    <td>БУЛ. СЛИВНИЦА | <em>0377&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_5" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/958/ul-pirotska#2112">2112</a>
+                                                    </td>
+                                                    <td>УЛ. ПИРОТСКА | <em>2112&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_6" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/575/pl-makedoniya#1282">1282</a>
+                                                    </td>
+                                                    <td>ПЛ. МАКЕДОНИЯ | <em>1282&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_7" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/171/bul-praga#364">0364</a>
+                                                    </td>
+                                                    <td>БУЛ. ПРАГА | <em>0364&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_8" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/515/ndk#1134">1134</a>
+                                                    </td>
+                                                    <td>НДК | <em>1134&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_9" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/168/bul-pencho-slaveykov#356">0356</a>
+                                                    </td>
+                                                    <td>БУЛ. ПЕНЧО СЛАВЕЙКОВ | <em>0356&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_10" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/5/14-ti-dkc#11">0011</a>
+                                                    </td>
+                                                    <td>14-ТИ ДКЦ | <em>0011&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_11" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/417/chitalishte-d-r-p-beron#929">0929</a>
+                                                    </td>
+                                                    <td>ЧИТАЛИЩЕ Д-Р П. БЕРОН | <em>0929&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_12" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/286/zh-k-ivan-vazov#625">0625</a>
+                                                    </td>
+                                                    <td>Ж.К. ИВАН ВАЗОВ | <em>0625&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8de7647c0_13" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="schedule_times">
+                                            <table>
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+
+                                                <thead>
+                                                <tr>
+                                                    <th>4</th>
+                                                    <th>5</th>
+                                                    <th>6</th>
+                                                    <th>7</th>
+                                                    <th>8</th>
+                                                    <th>9</th>
+                                                    <th>10</th>
+                                                    <th>11</th>
+                                                    <th>12</th>
+                                                    <th>13</th>
+                                                    <th>14</th>
+                                                    <th>15</th>
+                                                    <th>16</th>
+                                                    <th>17</th>
+                                                    <th>18</th>
+                                                    <th>19</th>
+                                                    <th>20</th>
+                                                    <th>21</th>
+                                                    <th>22</th>
+                                                    <th>23</th>
+                                                    <th>24</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            &nbsp;
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,328,329,332,333,334,336,340,342,345,346,349,351,352']); return false;">5:28</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,385,386,389,390,391,393,397,399,402,403,406,408,409']); return false;">6:25</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,451,452,455,456,458,460,465,467,470,471,474,476,477']); return false;">7:31</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,484,485,488,489,491,493,498,500,503,504,507,509,510']); return false;">8:04</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,513,514,517,518,520,522,527,529,532,533,536,538,539']); return false;">8:33</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,548,549,552,553,555,557,562,564,567,568,571,573,574']); return false;">9:08</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,587,588,591,592,594,596,601,603,606,607,610,612,613']); return false;">9:47</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,619,620,623,624,626,628,633,635,638,639,642,644,645']); return false;">10:19</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,653,654,657,658,660,662,667,669,672,673,676,678,679']); return false;">10:53</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,688,689,692,693,695,697,702,704,707,708,711,713,714']); return false;">11:28</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,724,725,728,729,731,733,738,740,743,744,747,749,750']); return false;">12:04</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,755,756,759,760,762,764,769,771,774,775,778,780,781']); return false;">12:35</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,789,790,793,794,796,798,803,805,808,809,812,814,815']); return false;">13:09</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,821,822,825,826,828,830,835,837,840,841,844,846,847']); return false;">13:41</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,855,856,859,860,862,864,869,871,874,875,878,880,881']); return false;">14:15</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,893,894,897,898,900,902,907,909,912,913,916,918,919']); return false;">14:53</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,932,933,936,937,939,941,946,948,951,952,955,957,958']); return false;">15:32</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,965,966,969,970,972,974,979,981,984,985,988,990,991']); return false;">16:05</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,998,999,1002,1003,1005,1007,1012,1014,1017,1018,1021,1023,1024']); return false;">16:38</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,1028,1029,1032,1033,1035,1037,1042,1044,1047,1048,1051,1053,1054']); return false;">17:08</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,1062,1063,1066,1067,1069,1071,1076,1078,1081,1082,1085,1087,1088']); return false;">17:42</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,1096,1097,1100,1101,1103,1105,1110,1112,1115,1116,1119,1121,1122']); return false;">18:16</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,1133,1134,1137,1138,1140,1142,1147,1149,1152,1153,1156,1158,1159']); return false;">18:53</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,1162,1163,1166,1167,1169,1171,1175,1177,1180,1181,1184,1186,1187']); return false;">19:22</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '1,1194,1195,1198,1199,1200,1202,1206,1208,1211,1212,1215,1217,1218']); return false;">19:54</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,1242,1243,1246,1247,1248,1250,1254,1256,1259,1260,1263,1265,1266']); return false;">20:42</a>					<a href="#" class="incomplete_course  incomplete_course_final" onclick="Raz.exec ('show_course', ['8de7647c0', '1,1253,1254,1257,1258,1259,1261,,,,,,,']); return false;">20:53</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,1302,1303,1306,1307,1308,1310,1314,1316,1319,1320,1323,1325,1326']); return false;">21:42</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8de7647c0', '2,1362,1363,1366,1367,1368,1370,1374,1376,1379,1380,1383,1385,1386']); return false;">22:42</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            &nbsp;
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            &nbsp;
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="hours_incomplete_notice">Забележка: непълните курсове са отбелязани в червено/оранжево</div>
+                                        </div>
+                                        <div class="line_print">
+                                            <ul class="line_print_route"></ul>
+                                            <ul class="line_print_times"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div id="schedule_direction_6671_2697_content" class="schedule_view_direction_content">
+                                    <div class="schedule_direction_sign_wrapper">
+                                        <a href="#" class="stop_map" onclick="Logi.DOM.Element.toggleClass ('content', 'stop_map_see'); return false;">
+                                            <img class="tooltip preview" src="web/img/public/map_icon.gif" alt="Виж на картата" />
+                                            <!-- <img id="schedule_6671_direction_2697_current_sign_map" class="tooltip map" src="http://www.bgmaps.com/old/tplimage.ashx?tplname=skgt&key=0625" alt="затвори" /> -->
+                                            <img id="schedule_6671_direction_2697_current_sign_map" class="tooltip map" src="http://www.bgmaps.com/templates/skgt/img/0625" alt="затвори" />
+                                        </a>
+
+                                        <span>От спирка:</span>
+                                        <a href="#" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); return false;" onmouseover="var el = event.relatedTarget || event.fromElement; var pn = el.parentNode; if (el != this && pn != this) { Logi.DOM.Element.show ('schedule_6671_direction_2697_signs'); } return false;" id="schedule_6671_direction_2697_current_sign" class="schedule_direction_sign">
+		<span id="schedule_6671_direction_2697_current_sign_name">
+			Ж.К. ИВАН ВАЗОВ (0625)
+		</span>
+                                            <img src="web/img/public/open_signs.gif" alt="v" />
+                                        </a>
+                                        <ul onmouseout="var el = event.relatedTarget || event.toElement; var pn = el.parentNode; if (el != this && pn != this && pn.parentNode != this) { Logi.DOM.Element.hide ('schedule_6671_direction_2697_signs'); }; return false;" id="schedule_6671_direction_2697_signs" class="schedule_direction_signs">
+                                            <li class="current_sign stop_286">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_625_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_625_stop" href="stop/286/zh-k-ivan-vazov#625">0625</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_625" href="/tramway/1#sign/2697/625" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">Ж.К. ИВАН ВАЗОВ</a>
+                                            </li>
+                                            <li class=" stop_417">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_928_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_928_stop" href="stop/417/chitalishte-d-r-p-beron#928">0928</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_928" href="/tramway/1#sign/2697/928" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ЧИТАЛИЩЕ Д-Р П. БЕРОН</a>
+                                            </li>
+                                            <li class=" stop_5">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_10_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_10_stop" href="stop/5/14-ti-dkc#10">0010</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_10" href="/tramway/1#sign/2697/10" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">14-ТИ ДКЦ</a>
+                                            </li>
+                                            <li class=" stop_168">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_357_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_357_stop" href="stop/168/bul-pencho-slaveykov#357">0357</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_357" href="/tramway/1#sign/2697/357" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">БУЛ. ПЕНЧО СЛАВЕЙКОВ</a>
+                                            </li>
+                                            <li class=" stop_515">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_1135_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_1135_stop" href="stop/515/ndk#1135">1135</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_1135" href="/tramway/1#sign/2697/1135" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">НДК</a>
+                                            </li>
+                                            <li class=" stop_171">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_365_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_365_stop" href="stop/171/bul-praga#365">0365</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_365" href="/tramway/1#sign/2697/365" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">БУЛ. ПРАГА</a>
+                                            </li>
+                                            <li class=" stop_575">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_1281_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_1281_stop" href="stop/575/pl-makedoniya#1281">1281</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_1281" href="/tramway/1#sign/2697/1281" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ПЛ. МАКЕДОНИЯ</a>
+                                            </li>
+                                            <li class=" stop_958">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_2113_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_2113_stop" href="stop/958/ul-pirotska#2113">2113</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_2113" href="/tramway/1#sign/2697/2113" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">УЛ. ПИРОТСКА</a>
+                                            </li>
+                                            <li class=" stop_175">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_376_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_376_stop" href="stop/175/bul-slivnica#376">0376</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_376" href="/tramway/1#sign/2697/376" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">БУЛ. СЛИВНИЦА</a>
+                                            </li>
+                                            <li class=" stop_904">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_1994_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_1994_stop" href="stop/904/ul-klokotnica#1994">1994</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_1994" href="/tramway/1#sign/2697/1994" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">УЛ. КЛОКОТНИЦА</a>
+                                            </li>
+                                            <li class=" stop_1275">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_2665_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_2665_stop" href="stop/1275/centralna-avtogara#2665">2665</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_2665" href="/tramway/1#sign/2697/2665" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ЦЕНТРАЛНА АВТОГАРА</a>
+                                            </li>
+                                            <li class=" stop_586">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_1332_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_1332_stop" href="stop/586/centralna-gara#1332">1332</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_1332" href="/tramway/1#sign/2697/1332" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ЦЕНТРАЛНА ГАРА</a>
+                                            </li>
+                                            <li class=" stop_565">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_1255_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_1255_stop" href="stop/565/peta-gradska-bolnica#1255">1255</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_1255" href="/tramway/1#sign/2697/1255" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ПЕТА ГРАДСКА БОЛНИЦА</a>
+                                            </li>
+                                            <li class=" stop_959">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6671_direction_2697_sign_1113_minutes" />
+                                                <a class="stop_link" id="schedule_6671_direction_2697_sign_1113_stop" href="stop/959/nadlez-nadezhda#1113">1113</a>
+                                                <a class="stop_change" id="schedule_6671_direction_2697_sign_1113" href="/tramway/1#sign/2697/1113" onclick="Logi.DOM.Element.toggle ('schedule_6671_direction_2697_signs'); $el ('schedule_6671_direction_2697_current_sign_name').innerHTML = this.innerHTML;">НАДЛЕЗ НАДЕЖДА</a>
+                                            </li>
+                                        </ul>
+                                        <a id="schedule_6671_direction_2697_current_sign_transfers" href="/tramway/1#transfers/625" onclick="Raz.exec ('stop_transfers', [this.href]); return false;" class="stop_transfers"><img class="tooltip" src="web/img/public/transfer.png" alt="Прекачвания" /></a>
+                                    </div>										<div id="schedule_direction_6671_2697_container" class="schedule_view_direction_container">
+                                    <h6>Ж.к. Иван Вазов - надлез Надежда</h6>
+                                    <div class="schedule_view_direction">
+                                        <div id="47fa56bc6_course" class="schedule_direction_view_course">
+                                            <table>
+                                                <col style="width: 45px;" />
+                                                <col />
+                                                <col style="width: 50px;" />
+                                                <tr>
+                                                    <td colspan="2">&nbsp;</td>
+                                                    <td><a href="#" onclick="Logi.DOM.Element.hide ('47fa56bc6_course'); return false;">затвори</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/286/zh-k-ivan-vazov#625">0625</a>
+                                                    </td>
+                                                    <th>Ж.К. ИВАН ВАЗОВ | <em>0625&nbsp;</em></th>
+                                                    <td class="time_column"><input id="47fa56bc6_1" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/417/chitalishte-d-r-p-beron#928">0928</a>
+                                                    </td>
+                                                    <td>ЧИТАЛИЩЕ Д-Р П. БЕРОН | <em>0928&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_2" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/5/14-ti-dkc#10">0010</a>
+                                                    </td>
+                                                    <td>14-ТИ ДКЦ | <em>0010&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_3" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/168/bul-pencho-slaveykov#357">0357</a>
+                                                    </td>
+                                                    <td>БУЛ. ПЕНЧО СЛАВЕЙКОВ | <em>0357&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_4" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/515/ndk#1135">1135</a>
+                                                    </td>
+                                                    <td>НДК | <em>1135&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_5" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/171/bul-praga#365">0365</a>
+                                                    </td>
+                                                    <td>БУЛ. ПРАГА | <em>0365&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_6" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/575/pl-makedoniya#1281">1281</a>
+                                                    </td>
+                                                    <td>ПЛ. МАКЕДОНИЯ | <em>1281&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_7" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/958/ul-pirotska#2113">2113</a>
+                                                    </td>
+                                                    <td>УЛ. ПИРОТСКА | <em>2113&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_8" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/175/bul-slivnica#376">0376</a>
+                                                    </td>
+                                                    <td>БУЛ. СЛИВНИЦА | <em>0376&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_9" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/904/ul-klokotnica#1994">1994</a>
+                                                    </td>
+                                                    <td>УЛ. КЛОКОТНИЦА | <em>1994&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_10" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/1275/centralna-avtogara#2665">2665</a>
+                                                    </td>
+                                                    <td>ЦЕНТРАЛНА АВТОГАРА | <em>2665&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_11" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/586/centralna-gara#1332">1332</a>
+                                                    </td>
+                                                    <td>ЦЕНТРАЛНА ГАРА | <em>1332&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_12" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/565/peta-gradska-bolnica#1255">1255</a>
+                                                    </td>
+                                                    <td>ПЕТА ГРАДСКА БОЛНИЦА | <em>1255&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_13" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/959/nadlez-nadezhda#1113">1113</a>
+                                                    </td>
+                                                    <td>НАДЛЕЗ НАДЕЖДА | <em>1113&nbsp;</em></td>
+                                                    <td class="time_column"><input id="47fa56bc6_14" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="schedule_times">
+                                            <table>
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+
+                                                <thead>
+                                                <tr>
+                                                    <th>4</th>
+                                                    <th>5</th>
+                                                    <th>6</th>
+                                                    <th>7</th>
+                                                    <th>8</th>
+                                                    <th>9</th>
+                                                    <th>10</th>
+                                                    <th>11</th>
+                                                    <th>12</th>
+                                                    <th>13</th>
+                                                    <th>14</th>
+                                                    <th>15</th>
+                                                    <th>16</th>
+                                                    <th>17</th>
+                                                    <th>18</th>
+                                                    <th>19</th>
+                                                    <th>20</th>
+                                                    <th>21</th>
+                                                    <th>22</th>
+                                                    <th>23</th>
+                                                    <th>24</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,293,295,297,299,300,303,305,309,311,312,314,316,319,320']); return false;">4:53</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,356,358,360,362,363,366,368,372,374,375,377,379,382,383']); return false;">5:56</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,412,414,416,418,419,422,424,428,430,431,433,435,438,439']); return false;">6:52</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,447,449,451,453,454,457,459,464,466,468,470,472,475,476']); return false;">7:27</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,481,483,485,487,488,491,493,498,500,502,504,506,509,510']); return false;">8:01</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,514,516,518,520,521,524,526,531,533,535,537,539,542,543']); return false;">8:34</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,543,545,547,549,550,553,555,560,562,564,566,568,571,572']); return false;">9:03</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,577,579,581,583,584,587,589,594,596,598,600,602,605,606']); return false;">9:37</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,617,619,621,623,624,627,629,634,636,638,640,642,645,646']); return false;">10:17</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,648,650,652,654,655,658,660,665,667,669,671,673,676,677']); return false;">10:48</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,683,685,687,689,690,693,695,700,702,704,706,708,711,712']); return false;">11:23</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,718,720,722,724,725,728,730,735,737,739,741,743,746,747']); return false;">11:58</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,754,756,758,760,761,764,766,771,773,775,777,779,782,783']); return false;">12:34</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,784,786,788,790,791,794,796,801,803,805,807,809,812,813']); return false;">13:04</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,819,821,823,825,826,829,831,836,838,840,842,844,847,848']); return false;">13:39</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,851,853,855,857,858,861,863,868,870,872,874,876,879,880']); return false;">14:11</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,885,887,889,891,892,895,897,902,904,906,908,910,913,914']); return false;">14:45</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,923,925,927,929,930,933,935,940,942,944,946,948,951,952']); return false;">15:23</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,961,963,965,967,968,971,973,978,980,982,984,986,989,990']); return false;">16:01</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,995,997,999,1001,1002,1005,1007,1012,1014,1016,1018,1020,1023,1024']); return false;">16:35</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,1028,1030,1032,1034,1035,1038,1040,1045,1047,1049,1051,1053,1056,1057']); return false;">17:08</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,1059,1061,1063,1065,1066,1069,1071,1076,1078,1080,1082,1084,1087,1088']); return false;">17:39</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,1092,1094,1096,1098,1099,1102,1104,1109,1111,1113,1115,1117,1120,1121']); return false;">18:12</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,1127,1129,1131,1133,1134,1137,1139,1144,1146,1148,1150,1152,1155,1156']); return false;">18:47</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,1162,1164,1166,1168,1169,1172,1174,1178,1180,1181,1183,1185,1188,1189']); return false;">19:22</a>					<a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,1191,1193,1195,1197,1198,1201,1203,1207,1209,1210,1212,1214,1217,1218']); return false;">19:51</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '1,1222,1224,1226,1228,1229,1232,1234,1238,1240,1241,1243,1245,1248,1249']); return false;">20:22</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,1270,1272,1274,1276,1277,1280,1282,1286,1288,1289,1291,1293,1296,1297']); return false;">21:10</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['47fa56bc6', '2,1330,1332,1334,1336,1337,1340,1342,1346,1348,1349,1351,1353,1356,1357']); return false;">22:10</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#" class="incomplete_course  incomplete_course_final" onclick="Raz.exec ('show_course', ['47fa56bc6', '2,1390,1392,1394,1396,1397,1400,1402,,,,,,,']); return false;">23:10</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            &nbsp;
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="hours_incomplete_notice">Забележка: непълните курсове са отбелязани в червено/оранжево</div>
+                                        </div>
+                                        <div class="line_print">
+                                            <ul class="line_print_route"></ul>
+                                            <ul class="line_print_times"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>		</div>
+                <div id="schedule_6672_content" class="schedule_active_list_content">
+                    <h3>предпразник, празник - в сила от <em>20.08.2016</em>.							</h3>
+                    <div class="schedule_view">
+                        <ul class="schedule_view_direction_tabs">
+                            <li>
+                                <a  id="schedule_direction_6672_2696_button" class="schedule_view_direction_active_tab schedule_view_direction_tab">
+                                    <span>Надлез Надежда - ж.к. Иван Вазов</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tramway/1#direction/2697" id="schedule_direction_6672_2697_button" class="schedule_view_direction_tab">
+
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="schedule_view_route">
+                            <div class="schedule_view_route_directions">
+                                <div id="schedule_direction_6672_2696_content" class="schedule_view_direction_content">
+                                    <div class="schedule_direction_sign_wrapper">
+                                        <a href="#" class="stop_map" onclick="Logi.DOM.Element.toggleClass ('content', 'stop_map_see'); return false;">
+                                            <img class="tooltip preview" src="web/img/public/map_icon.gif" alt="Виж на картата" />
+                                            <!-- <img id="schedule_6672_direction_2696_current_sign_map" class="tooltip map" src="http://www.bgmaps.com/old/tplimage.ashx?tplname=skgt&key=1113" alt="затвори" /> -->
+                                            <img id="schedule_6672_direction_2696_current_sign_map" class="tooltip map" src="http://www.bgmaps.com/templates/skgt/img/1113" alt="затвори" />
+                                        </a>
+
+                                        <span>От спирка:</span>
+                                        <a href="#" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); return false;" onmouseover="var el = event.relatedTarget || event.fromElement; var pn = el.parentNode; if (el != this && pn != this) { Logi.DOM.Element.show ('schedule_6672_direction_2696_signs'); } return false;" id="schedule_6672_direction_2696_current_sign" class="schedule_direction_sign">
+		<span id="schedule_6672_direction_2696_current_sign_name">
+			НАДЛЕЗ НАДЕЖДА (1113)
+		</span>
+                                            <img src="web/img/public/open_signs.gif" alt="v" />
+                                        </a>
+                                        <ul onmouseout="var el = event.relatedTarget || event.toElement; var pn = el.parentNode; if (el != this && pn != this && pn.parentNode != this) { Logi.DOM.Element.hide ('schedule_6672_direction_2696_signs'); }; return false;" id="schedule_6672_direction_2696_signs" class="schedule_direction_signs">
+                                            <li class="current_sign stop_959">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_1113_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_1113_stop" href="stop/959/nadlez-nadezhda#1113">1113</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_1113" href="/tramway/1#sign/2696/1113" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">НАДЛЕЗ НАДЕЖДА</a>
+                                            </li>
+                                            <li class=" stop_565">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_1254_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_1254_stop" href="stop/565/peta-gradska-bolnica#1254">1254</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_1254" href="/tramway/1#sign/2696/1254" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">ПЕТА ГРАДСКА БОЛНИЦА</a>
+                                            </li>
+                                            <li class=" stop_586">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_1331_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_1331_stop" href="stop/586/centralna-gara#1331">1331</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_1331" href="/tramway/1#sign/2696/1331" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">ЦЕНТРАЛНА ГАРА</a>
+                                            </li>
+                                            <li class=" stop_904">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_1993_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_1993_stop" href="stop/904/ul-klokotnica#1993">1993</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_1993" href="/tramway/1#sign/2696/1993" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">УЛ. КЛОКОТНИЦА</a>
+                                            </li>
+                                            <li class=" stop_175">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_377_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_377_stop" href="stop/175/bul-slivnica#377">0377</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_377" href="/tramway/1#sign/2696/377" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">БУЛ. СЛИВНИЦА</a>
+                                            </li>
+                                            <li class=" stop_958">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_2112_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_2112_stop" href="stop/958/ul-pirotska#2112">2112</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_2112" href="/tramway/1#sign/2696/2112" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">УЛ. ПИРОТСКА</a>
+                                            </li>
+                                            <li class=" stop_575">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_1282_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_1282_stop" href="stop/575/pl-makedoniya#1282">1282</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_1282" href="/tramway/1#sign/2696/1282" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">ПЛ. МАКЕДОНИЯ</a>
+                                            </li>
+                                            <li class=" stop_171">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_364_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_364_stop" href="stop/171/bul-praga#364">0364</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_364" href="/tramway/1#sign/2696/364" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">БУЛ. ПРАГА</a>
+                                            </li>
+                                            <li class=" stop_515">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_1134_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_1134_stop" href="stop/515/ndk#1134">1134</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_1134" href="/tramway/1#sign/2696/1134" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">НДК</a>
+                                            </li>
+                                            <li class=" stop_168">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_356_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_356_stop" href="stop/168/bul-pencho-slaveykov#356">0356</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_356" href="/tramway/1#sign/2696/356" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">БУЛ. ПЕНЧО СЛАВЕЙКОВ</a>
+                                            </li>
+                                            <li class=" stop_5">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_11_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_11_stop" href="stop/5/14-ti-dkc#11">0011</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_11" href="/tramway/1#sign/2696/11" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">14-ТИ ДКЦ</a>
+                                            </li>
+                                            <li class=" stop_417">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_929_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_929_stop" href="stop/417/chitalishte-d-r-p-beron#929">0929</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_929" href="/tramway/1#sign/2696/929" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">ЧИТАЛИЩЕ Д-Р П. БЕРОН</a>
+                                            </li>
+                                            <li class=" stop_286">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2696_sign_625_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2696_sign_625_stop" href="stop/286/zh-k-ivan-vazov#625">0625</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2696_sign_625" href="/tramway/1#sign/2696/625" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2696_signs'); $el ('schedule_6672_direction_2696_current_sign_name').innerHTML = this.innerHTML;">Ж.К. ИВАН ВАЗОВ</a>
+                                            </li>
+                                        </ul>
+                                        <a id="schedule_6672_direction_2696_current_sign_transfers" href="/tramway/1#transfers/1113" onclick="Raz.exec ('stop_transfers', [this.href]); return false;" class="stop_transfers"><img class="tooltip" src="web/img/public/transfer.png" alt="Прекачвания" /></a>
+                                    </div>										<div id="schedule_direction_6672_2696_container" class="schedule_view_direction_container">
+                                    <h6>Надлез Надежда - ж.к. Иван Вазов</h6>
+                                    <div class="schedule_view_direction">
+                                        <div id="8563b0fd0_course" class="schedule_direction_view_course">
+                                            <table>
+                                                <col style="width: 45px;" />
+                                                <col />
+                                                <col style="width: 50px;" />
+                                                <tr>
+                                                    <td colspan="2">&nbsp;</td>
+                                                    <td><a href="#" onclick="Logi.DOM.Element.hide ('8563b0fd0_course'); return false;">затвори</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/959/nadlez-nadezhda#1113">1113</a>
+                                                    </td>
+                                                    <th>НАДЛЕЗ НАДЕЖДА | <em>1113&nbsp;</em></th>
+                                                    <td class="time_column"><input id="8563b0fd0_1" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/565/peta-gradska-bolnica#1254">1254</a>
+                                                    </td>
+                                                    <td>ПЕТА ГРАДСКА БОЛНИЦА | <em>1254&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_2" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/586/centralna-gara#1331">1331</a>
+                                                    </td>
+                                                    <td>ЦЕНТРАЛНА ГАРА | <em>1331&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_3" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/904/ul-klokotnica#1993">1993</a>
+                                                    </td>
+                                                    <td>УЛ. КЛОКОТНИЦА | <em>1993&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_4" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/175/bul-slivnica#377">0377</a>
+                                                    </td>
+                                                    <td>БУЛ. СЛИВНИЦА | <em>0377&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_5" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/958/ul-pirotska#2112">2112</a>
+                                                    </td>
+                                                    <td>УЛ. ПИРОТСКА | <em>2112&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_6" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/575/pl-makedoniya#1282">1282</a>
+                                                    </td>
+                                                    <td>ПЛ. МАКЕДОНИЯ | <em>1282&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_7" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/171/bul-praga#364">0364</a>
+                                                    </td>
+                                                    <td>БУЛ. ПРАГА | <em>0364&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_8" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/515/ndk#1134">1134</a>
+                                                    </td>
+                                                    <td>НДК | <em>1134&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_9" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/168/bul-pencho-slaveykov#356">0356</a>
+                                                    </td>
+                                                    <td>БУЛ. ПЕНЧО СЛАВЕЙКОВ | <em>0356&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_10" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/5/14-ti-dkc#11">0011</a>
+                                                    </td>
+                                                    <td>14-ТИ ДКЦ | <em>0011&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_11" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/417/chitalishte-d-r-p-beron#929">0929</a>
+                                                    </td>
+                                                    <td>ЧИТАЛИЩЕ Д-Р П. БЕРОН | <em>0929&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_12" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/286/zh-k-ivan-vazov#625">0625</a>
+                                                    </td>
+                                                    <td>Ж.К. ИВАН ВАЗОВ | <em>0625&nbsp;</em></td>
+                                                    <td class="time_column"><input id="8563b0fd0_13" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="schedule_times">
+                                            <table>
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+
+                                                <thead>
+                                                <tr>
+                                                    <th>4</th>
+                                                    <th>5</th>
+                                                    <th>6</th>
+                                                    <th>7</th>
+                                                    <th>8</th>
+                                                    <th>9</th>
+                                                    <th>10</th>
+                                                    <th>11</th>
+                                                    <th>12</th>
+                                                    <th>13</th>
+                                                    <th>14</th>
+                                                    <th>15</th>
+                                                    <th>16</th>
+                                                    <th>17</th>
+                                                    <th>18</th>
+                                                    <th>19</th>
+                                                    <th>20</th>
+                                                    <th>21</th>
+                                                    <th>22</th>
+                                                    <th>23</th>
+                                                    <th>24</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            &nbsp;
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,326,327,330,331,332,334,338,340,343,344,347,349,350']); return false;">5:26</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,386,387,390,391,392,394,398,400,403,404,407,409,410']); return false;">6:26</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,444,445,448,449,451,453,458,460,463,464,467,469,470']); return false;">7:24</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,480,481,484,485,487,489,494,496,499,500,503,505,506']); return false;">8:00</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,517,518,521,522,524,526,531,533,536,537,540,542,543']); return false;">8:37</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,552,553,556,557,559,561,566,568,571,572,575,577,578']); return false;">9:12</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,590,591,594,595,597,599,604,606,609,610,613,615,616']); return false;">9:50</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,620,621,624,625,627,629,634,636,639,640,643,645,646']); return false;">10:20</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,656,657,660,661,663,665,670,672,675,676,679,681,682']); return false;">10:56</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,689,690,693,694,696,698,703,705,708,709,712,714,715']); return false;">11:29</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,719,720,723,724,726,728,733,735,738,739,742,744,745']); return false;">11:59</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,754,755,758,759,761,763,768,770,773,774,777,779,780']); return false;">12:34</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,787,788,791,792,794,796,801,803,806,807,810,812,813']); return false;">13:07</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,817,818,821,822,824,826,831,833,836,837,840,842,843']); return false;">13:37</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,854,855,858,859,861,863,868,870,873,874,877,879,880']); return false;">14:14</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,891,892,895,896,898,900,905,907,910,911,914,916,917']); return false;">14:51</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,929,930,933,934,936,938,943,945,948,949,952,954,955']); return false;">15:29</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,965,966,969,970,972,974,979,981,984,985,988,990,991']); return false;">16:05</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,998,999,1002,1003,1005,1007,1012,1014,1017,1018,1021,1023,1024']); return false;">16:38</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,1028,1029,1032,1033,1035,1037,1042,1044,1047,1048,1051,1053,1054']); return false;">17:08</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,1063,1064,1067,1068,1070,1072,1077,1079,1082,1083,1086,1088,1089']); return false;">17:43</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,1097,1098,1101,1102,1104,1106,1111,1113,1116,1117,1120,1122,1123']); return false;">18:17</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,1126,1127,1130,1131,1133,1135,1140,1142,1145,1146,1149,1151,1152']); return false;">18:46</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,1161,1162,1165,1166,1168,1170,1174,1176,1179,1180,1183,1185,1186']); return false;">19:21</a>					<a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '1,1192,1193,1196,1197,1198,1200,1204,1206,1209,1210,1213,1215,1216']); return false;">19:52</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,1237,1238,1241,1242,1243,1245,1249,1251,1254,1255,1258,1260,1261']); return false;">20:37</a>					<a href="#" class="incomplete_course  incomplete_course_final" onclick="Raz.exec ('show_course', ['8563b0fd0', '1,1255,1256,1259,1260,1261,1263,,,,,,,']); return false;">20:55</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,1298,1299,1302,1303,1304,1306,1310,1312,1315,1316,1319,1321,1322']); return false;">21:38</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['8563b0fd0', '2,1359,1360,1363,1364,1365,1367,1371,1373,1376,1377,1380,1382,1383']); return false;">22:39</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            &nbsp;
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            &nbsp;
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="hours_incomplete_notice">Забележка: непълните курсове са отбелязани в червено/оранжево</div>
+                                        </div>
+                                        <div class="line_print">
+                                            <ul class="line_print_route"></ul>
+                                            <ul class="line_print_times"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div id="schedule_direction_6672_2697_content" class="schedule_view_direction_content">
+                                    <div class="schedule_direction_sign_wrapper">
+                                        <a href="#" class="stop_map" onclick="Logi.DOM.Element.toggleClass ('content', 'stop_map_see'); return false;">
+                                            <img class="tooltip preview" src="web/img/public/map_icon.gif" alt="Виж на картата" />
+                                            <!-- <img id="schedule_6672_direction_2697_current_sign_map" class="tooltip map" src="http://www.bgmaps.com/old/tplimage.ashx?tplname=skgt&key=0625" alt="затвори" /> -->
+                                            <img id="schedule_6672_direction_2697_current_sign_map" class="tooltip map" src="http://www.bgmaps.com/templates/skgt/img/0625" alt="затвори" />
+                                        </a>
+
+                                        <span>От спирка:</span>
+                                        <a href="#" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); return false;" onmouseover="var el = event.relatedTarget || event.fromElement; var pn = el.parentNode; if (el != this && pn != this) { Logi.DOM.Element.show ('schedule_6672_direction_2697_signs'); } return false;" id="schedule_6672_direction_2697_current_sign" class="schedule_direction_sign">
+		<span id="schedule_6672_direction_2697_current_sign_name">
+			Ж.К. ИВАН ВАЗОВ (0625)
+		</span>
+                                            <img src="web/img/public/open_signs.gif" alt="v" />
+                                        </a>
+                                        <ul onmouseout="var el = event.relatedTarget || event.toElement; var pn = el.parentNode; if (el != this && pn != this && pn.parentNode != this) { Logi.DOM.Element.hide ('schedule_6672_direction_2697_signs'); }; return false;" id="schedule_6672_direction_2697_signs" class="schedule_direction_signs">
+                                            <li class="current_sign stop_286">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_625_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_625_stop" href="stop/286/zh-k-ivan-vazov#625">0625</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_625" href="/tramway/1#sign/2697/625" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">Ж.К. ИВАН ВАЗОВ</a>
+                                            </li>
+                                            <li class=" stop_417">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_928_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_928_stop" href="stop/417/chitalishte-d-r-p-beron#928">0928</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_928" href="/tramway/1#sign/2697/928" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ЧИТАЛИЩЕ Д-Р П. БЕРОН</a>
+                                            </li>
+                                            <li class=" stop_5">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_10_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_10_stop" href="stop/5/14-ti-dkc#10">0010</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_10" href="/tramway/1#sign/2697/10" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">14-ТИ ДКЦ</a>
+                                            </li>
+                                            <li class=" stop_168">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_357_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_357_stop" href="stop/168/bul-pencho-slaveykov#357">0357</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_357" href="/tramway/1#sign/2697/357" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">БУЛ. ПЕНЧО СЛАВЕЙКОВ</a>
+                                            </li>
+                                            <li class=" stop_515">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_1135_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_1135_stop" href="stop/515/ndk#1135">1135</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_1135" href="/tramway/1#sign/2697/1135" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">НДК</a>
+                                            </li>
+                                            <li class=" stop_171">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_365_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_365_stop" href="stop/171/bul-praga#365">0365</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_365" href="/tramway/1#sign/2697/365" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">БУЛ. ПРАГА</a>
+                                            </li>
+                                            <li class=" stop_575">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_1281_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_1281_stop" href="stop/575/pl-makedoniya#1281">1281</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_1281" href="/tramway/1#sign/2697/1281" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ПЛ. МАКЕДОНИЯ</a>
+                                            </li>
+                                            <li class=" stop_958">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_2113_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_2113_stop" href="stop/958/ul-pirotska#2113">2113</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_2113" href="/tramway/1#sign/2697/2113" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">УЛ. ПИРОТСКА</a>
+                                            </li>
+                                            <li class=" stop_175">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_376_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_376_stop" href="stop/175/bul-slivnica#376">0376</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_376" href="/tramway/1#sign/2697/376" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">БУЛ. СЛИВНИЦА</a>
+                                            </li>
+                                            <li class=" stop_904">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_1994_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_1994_stop" href="stop/904/ul-klokotnica#1994">1994</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_1994" href="/tramway/1#sign/2697/1994" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">УЛ. КЛОКОТНИЦА</a>
+                                            </li>
+                                            <li class=" stop_1275">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_2665_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_2665_stop" href="stop/1275/centralna-avtogara#2665">2665</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_2665" href="/tramway/1#sign/2697/2665" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ЦЕНТРАЛНА АВТОГАРА</a>
+                                            </li>
+                                            <li class=" stop_586">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_1332_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_1332_stop" href="stop/586/centralna-gara#1332">1332</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_1332" href="/tramway/1#sign/2697/1332" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ЦЕНТРАЛНА ГАРА</a>
+                                            </li>
+                                            <li class=" stop_565">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_1255_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_1255_stop" href="stop/565/peta-gradska-bolnica#1255">1255</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_1255" href="/tramway/1#sign/2697/1255" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">ПЕТА ГРАДСКА БОЛНИЦА</a>
+                                            </li>
+                                            <li class=" stop_959">
+                                                <input readonly="readonly" class="stop_minutes" id="schedule_6672_direction_2697_sign_1113_minutes" />
+                                                <a class="stop_link" id="schedule_6672_direction_2697_sign_1113_stop" href="stop/959/nadlez-nadezhda#1113">1113</a>
+                                                <a class="stop_change" id="schedule_6672_direction_2697_sign_1113" href="/tramway/1#sign/2697/1113" onclick="Logi.DOM.Element.toggle ('schedule_6672_direction_2697_signs'); $el ('schedule_6672_direction_2697_current_sign_name').innerHTML = this.innerHTML;">НАДЛЕЗ НАДЕЖДА</a>
+                                            </li>
+                                        </ul>
+                                        <a id="schedule_6672_direction_2697_current_sign_transfers" href="/tramway/1#transfers/625" onclick="Raz.exec ('stop_transfers', [this.href]); return false;" class="stop_transfers"><img class="tooltip" src="web/img/public/transfer.png" alt="Прекачвания" /></a>
+                                    </div>										<div id="schedule_direction_6672_2697_container" class="schedule_view_direction_container">
+                                    <h6>Ж.к. Иван Вазов - надлез Надежда</h6>
+                                    <div class="schedule_view_direction">
+                                        <div id="9fc46c352_course" class="schedule_direction_view_course">
+                                            <table>
+                                                <col style="width: 45px;" />
+                                                <col />
+                                                <col style="width: 50px;" />
+                                                <tr>
+                                                    <td colspan="2">&nbsp;</td>
+                                                    <td><a href="#" onclick="Logi.DOM.Element.hide ('9fc46c352_course'); return false;">затвори</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/286/zh-k-ivan-vazov#625">0625</a>
+                                                    </td>
+                                                    <th>Ж.К. ИВАН ВАЗОВ | <em>0625&nbsp;</em></th>
+                                                    <td class="time_column"><input id="9fc46c352_1" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/417/chitalishte-d-r-p-beron#928">0928</a>
+                                                    </td>
+                                                    <td>ЧИТАЛИЩЕ Д-Р П. БЕРОН | <em>0928&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_2" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/5/14-ti-dkc#10">0010</a>
+                                                    </td>
+                                                    <td>14-ТИ ДКЦ | <em>0010&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_3" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/168/bul-pencho-slaveykov#357">0357</a>
+                                                    </td>
+                                                    <td>БУЛ. ПЕНЧО СЛАВЕЙКОВ | <em>0357&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_4" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/515/ndk#1135">1135</a>
+                                                    </td>
+                                                    <td>НДК | <em>1135&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_5" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/171/bul-praga#365">0365</a>
+                                                    </td>
+                                                    <td>БУЛ. ПРАГА | <em>0365&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_6" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/575/pl-makedoniya#1281">1281</a>
+                                                    </td>
+                                                    <td>ПЛ. МАКЕДОНИЯ | <em>1281&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_7" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/958/ul-pirotska#2113">2113</a>
+                                                    </td>
+                                                    <td>УЛ. ПИРОТСКА | <em>2113&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_8" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/175/bul-slivnica#376">0376</a>
+                                                    </td>
+                                                    <td>БУЛ. СЛИВНИЦА | <em>0376&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_9" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/904/ul-klokotnica#1994">1994</a>
+                                                    </td>
+                                                    <td>УЛ. КЛОКОТНИЦА | <em>1994&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_10" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/1275/centralna-avtogara#2665">2665</a>
+                                                    </td>
+                                                    <td>ЦЕНТРАЛНА АВТОГАРА | <em>2665&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_11" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/586/centralna-gara#1332">1332</a>
+                                                    </td>
+                                                    <td>ЦЕНТРАЛНА ГАРА | <em>1332&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_12" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/565/peta-gradska-bolnica#1255">1255</a>
+                                                    </td>
+                                                    <td>ПЕТА ГРАДСКА БОЛНИЦА | <em>1255&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_13" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="sign_column">
+                                                        <a href="stop/959/nadlez-nadezhda#1113">1113</a>
+                                                    </td>
+                                                    <td>НАДЛЕЗ НАДЕЖДА | <em>1113&nbsp;</em></td>
+                                                    <td class="time_column"><input id="9fc46c352_14" readonly="readonly" class="course_cell" value="*" /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                        <div class="schedule_times">
+                                            <table>
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 27px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+                                                <col style="width: 31px" />
+
+                                                <thead>
+                                                <tr>
+                                                    <th>4</th>
+                                                    <th>5</th>
+                                                    <th>6</th>
+                                                    <th>7</th>
+                                                    <th>8</th>
+                                                    <th>9</th>
+                                                    <th>10</th>
+                                                    <th>11</th>
+                                                    <th>12</th>
+                                                    <th>13</th>
+                                                    <th>14</th>
+                                                    <th>15</th>
+                                                    <th>16</th>
+                                                    <th>17</th>
+                                                    <th>18</th>
+                                                    <th>19</th>
+                                                    <th>20</th>
+                                                    <th>21</th>
+                                                    <th>22</th>
+                                                    <th>23</th>
+                                                    <th>24</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,293,295,297,299,300,303,305,309,311,312,314,316,319,320']); return false;">4:53</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,354,356,358,360,361,364,366,370,372,373,375,377,380,381']); return false;">5:54</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,414,416,418,420,421,424,426,430,432,433,435,437,440,441']); return false;">6:54</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,445,447,449,451,452,455,457,462,464,466,468,470,473,474']); return false;">7:25</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,474,476,478,480,481,484,486,491,493,495,497,499,502,503']); return false;">7:54</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,510,512,514,516,517,520,522,527,529,531,533,535,538,539']); return false;">8:30</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,547,549,551,553,554,557,559,564,566,568,570,572,575,576']); return false;">9:07</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,582,584,586,588,589,592,594,599,601,603,605,607,610,611']); return false;">9:42</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,620,622,624,626,627,630,632,637,639,641,643,645,648,649']); return false;">10:20</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,650,652,654,656,657,660,662,667,669,671,673,675,678,679']); return false;">10:50</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,686,688,690,692,693,696,698,703,705,707,709,711,714,715']); return false;">11:26</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,719,721,723,725,726,729,731,736,738,740,742,744,747,748']); return false;">11:59</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,749,751,753,755,756,759,761,766,768,770,772,774,777,778']); return false;">12:29</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,784,786,788,790,791,794,796,801,803,805,807,809,812,813']); return false;">13:04</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,817,819,821,823,824,827,829,834,836,838,840,842,845,846']); return false;">13:37</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,847,849,851,853,854,857,859,864,866,868,870,872,875,876']); return false;">14:07</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,884,886,888,890,891,894,896,901,903,905,907,909,912,913']); return false;">14:44</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,921,923,925,927,928,931,933,938,940,942,944,946,949,950']); return false;">15:21</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,959,961,963,965,966,969,971,976,978,980,982,984,987,988']); return false;">15:59</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,995,997,999,1001,1002,1005,1007,1012,1014,1016,1018,1020,1023,1024']); return false;">16:35</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,1028,1030,1032,1034,1035,1038,1040,1045,1047,1049,1051,1053,1056,1057']); return false;">17:08</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,1058,1060,1062,1064,1065,1068,1070,1075,1077,1079,1081,1083,1086,1087']); return false;">17:38</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,1093,1095,1097,1099,1100,1103,1105,1110,1112,1114,1116,1118,1121,1122']); return false;">18:13</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,1127,1129,1131,1133,1134,1137,1139,1144,1146,1148,1150,1152,1155,1156']); return false;">18:47</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,1156,1158,1160,1162,1163,1166,1168,1172,1174,1175,1177,1179,1182,1183']); return false;">19:16</a>					<a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,1190,1192,1194,1196,1197,1200,1202,1206,1208,1209,1211,1213,1216,1217']); return false;">19:50</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '1,1220,1222,1224,1226,1227,1230,1232,1236,1238,1239,1241,1243,1246,1247']); return false;">20:20</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,1265,1267,1269,1271,1272,1275,1277,1281,1283,1284,1286,1288,1291,1292']); return false;">21:05</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#"  onclick="Raz.exec ('show_course', ['9fc46c352', '2,1326,1328,1330,1332,1333,1336,1338,1342,1344,1345,1347,1349,1352,1353']); return false;">22:06</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            <a href="#" class="incomplete_course  incomplete_course_final" onclick="Raz.exec ('show_course', ['9fc46c352', '2,1387,1389,1391,1393,1394,1397,1399,,,,,,,']); return false;">23:07</a>																		</div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="hours_cell">
+                                                            &nbsp;
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="hours_incomplete_notice">Забележка: непълните курсове са отбелязани в червено/оранжево</div>
+                                        </div>
+                                        <div class="line_print">
+                                            <ul class="line_print_route"></ul>
+                                            <ul class="line_print_times"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>		</div>
+            </div>
+            </div>
+        </div>		</div>
+    <div class="footer">
+        Разработено от: <a href="http://www.logicasoft-bg.com" target="_blank">ЛогикаСофт Солюшънс</a>
+    </div>
+</div>
+<!-- End Wrapper -->
+</body>
+
+</html>

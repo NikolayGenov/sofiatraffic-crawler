@@ -2,19 +2,9 @@ package crawler
 
 import (
 	"encoding/json"
-	"time"
 
 	"github.com/garyburd/redigo/redis"
 )
-
-//newPool returns a new initialized redis pool for connections
-// It takes address e.g ":6379" as a parameter and uses it in the Dial function
-func newPool(address string) *redis.Pool {
-	return &redis.Pool{
-		MaxIdle:     3,
-		IdleTimeout: 360 * time.Second,
-		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", address) }}
-}
 
 //saveLines serializes the list of all lines as json and then sets to a key SofiaTraffic/lines in redis
 func (s *SofiaTrafficCrawler) saveLines() {

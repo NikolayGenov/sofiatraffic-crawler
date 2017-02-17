@@ -49,6 +49,17 @@ func (o Operation) String() string {
 	return operationStrings[o]
 }
 
+func (o *OperationIDMap) String() string {
+	s := ""
+	if len(*o) == 0 {
+		return "Line is not operational"
+	}
+	for operation, id := range *o {
+		s += fmt.Sprintf("%v (%v)\n", operation, id)
+	}
+	return s
+}
+
 //convertToOperation uses operationsIdentifiers to map convert UTF8 local language strings to Operation type
 func convertToOperation(identifier string) (Operation, error) {
 	t, ok := operationsIdentifiers[identifier]

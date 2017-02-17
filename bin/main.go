@@ -3,15 +3,24 @@ package main
 import (
 	"fmt"
 
+	"time"
+
 	"../crawler"
+	"github.com/garyburd/redigo/redis"
 )
 
-func main() {
+//newPool returns a new initialized redis pool for connections
+// It takes address e.g ":6379" as a parameter and uses it in the Dial function
+func newPool(address string) *redis.Pool {
+	return &redis.Pool{
+		MaxIdle:     3,
+		IdleTimeout: 360 * time.Second,
+		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", address) }}
+}
 
-	st, err := crawler.NewSofiaTrafficCrawler(":6379")
-	if err != nil {
-		panic(err)
-	}
+func main() {
+	pool := newPool(":6379")
+	st := crawler.NewSofiaTrafficCrawler(pool)
 
 	st.CrawlLines()
 	//for _, line := range st.Lines {
@@ -24,13 +33,13 @@ func main() {
 	//	}
 	//	fmt.Println()
 	//}
-	fmt.Println(len(st.Lines))
+	//fmt.Println(len(st.Lines))
 
-	st.CrawlSchedules(1)
+	//st.CrawlSchedules(0)
 	//for k, v := range st.Schedules {
 	//	fmt.Printf("%v,%v\n", k, v)
 	//}
-	fmt.Println(len(st.Schedules))
+	//fmt.Println(len(st.Schedules))
 
 	st.CrawlVirtualTablesLines(crawler.Normal)
 	//for _, vtStop := range st.VirtualTableStops {
@@ -38,7 +47,7 @@ func main() {
 	//}
 	fmt.Println(len(st.VirtualTableStops))
 
-	st.CrawlVirtualTablesStopsForTimes(100)
+	st.CrawlVirtualTablesStopsForTimes(0)
 	//for k, v := range st.VirtualTableStopsTimes {
 	//	fmt.Printf("%v -> %v\n", k, v)
 	//}

@@ -54,7 +54,8 @@ func (l *lineCrawler) Filter(ctx *gocrawl.URLContext, isVisited bool) bool {
 // - During the first pass - using the main seed URL get all the URLs and then filter what we need from them
 // - After we have filtered the elements they can pass trough here. For those that are on the second pass
 //   we need to find the name and type of transport form them and then we extract operation modes and map them to their
-//   operation ids and extract all the routes that the line can take - (Hint: they can be more than 2)
+//   operation ids and extract all the routes that the line can take - (Hint: they can be more than 2).
+//   In some cases this would not count as a valid line, so we won't add it
 func (l *lineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *goquery.Document) (interface{}, bool) {
 	path := ctx.URL().Path
 	if ctx.URL().Path != "/" {
@@ -84,7 +85,7 @@ func getOperationsMap(doc *goquery.Document) OperationIDMap {
 			operationString := strings.TrimSpace(operationSelection.Text())
 			operation, err := convertToOperation(operationString)
 			if err != nil {
-				panic(fmt.Errorf("Line MUST have of required operation types in order to be processed, given: %v", operationString))
+				panic(fmt.Errorf("Line should have of required operation types in order to be processed, error: %v", err))
 			}
 			m[operation] = getOperationIDFromElementID(operationSelection)
 		})

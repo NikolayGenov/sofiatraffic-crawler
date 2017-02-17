@@ -43,18 +43,15 @@ type SofiaTrafficCrawler struct {
 }
 
 //NewSofiaTrafficCrawler creates an initialized NewSofiaTrafficCrawler struct that all crawler functions use.
-// It takes an address to redis port that it uses for persistence e.g. ":6379".
-// Returns an error only of there is a problem with the redis connection which the function immediately tries to Dial.
-func NewSofiaTrafficCrawler(redisAddress string) (*SofiaTrafficCrawler, error) {
-	pool := newPool(redisAddress)
-	c, err := pool.Dial()
-	defer c.Close()
+// It takes already created pool of redis connections that it uses for persistence
+// The data for is accessible trough the structure of the crawler.
+func NewSofiaTrafficCrawler(redisPool *redis.Pool) *SofiaTrafficCrawler {
 	return &SofiaTrafficCrawler{
 		Lines:                  make([]Line, 0),
 		Schedules:              make(map[ScheduleID]ScheduleTimes),
 		VirtualTableStops:      make([]VirtualTableStop, 0),
 		VirtualTableStopsTimes: make(map[VirtualTableStop]string),
-		redisPool:              pool}, err
+		redisPool:              redisPool}
 }
 
 //CrawlLines starts a new crawl from schedules.sofiatraffic.bg as seed link and search for all links that match all

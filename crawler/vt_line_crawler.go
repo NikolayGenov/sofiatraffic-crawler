@@ -131,57 +131,7 @@ func (v *vtLineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *
 	vtRoutesStops := make([]VirtualTableStop, 0)
 
 	doc.Find("form").Each(func(i int, routeSelection *goquery.Selection) {
-		directionString := strings.TrimSpace(routeSelection.Find(".info").Text())
-		route, err := findRoute(routes, directionString)
-		if err != nil {
-			log.Printf("There was an error finding route with name [%v], error: %v\n", directionString, err)
-			return
-		}
-		var lineID, routeID, transportationType string
-		if lineID, err = getValueFromInput(routeSelection, "lid"); err != nil {
-			log.Printf("Error input lineID on route [%v] with error: %v", route.Name, err)
-			return
-		}
-		if routeID, err = getValueFromInput(routeSelection, "rid"); err != nil {
-			log.Printf("Error input routeID on route [%v] with error: %v", route.Name, err)
-			return
-		}
-		if transportationType, err = getValueFromInput(routeSelection, "vt"); err != nil {
-			log.Printf("Error input vt on route [%v] with error: %v", route.Name, err)
-			return
-		}
-		routeSelection.Find("option").Each(func(i int, stopSelection *goquery.Selection) {
-			stopText := strings.TrimSpace(stopSelection.Text())
-			stopMatches := vtStopRegex.FindStringSubmatch(stopText)
-			if len(stopMatches) != 3 {
-				log.Printf("Stop name is NOT in the required format: `Some name (xxxx)`, given: %v", stopText)
-				return
-			}
-			stopName := stopMatches[1]
-			stopSign := stopMatches[2]
-
-			vtStopID, ok := stopSelection.Attr("value")
-			if !ok {
-				log.Printf("No required attribute 'value' found on stopID [%v (%v)]", stopName, stopSign)
-			}
-
-			stop, err := findStop(route.Stops, stopSign)
-			if err != nil {
-				log.Printf("Error finding stopID with name [%v (%v)] on direction [%v], error: %v\n", stopName, stopSign, route.Name, err)
-				return
-			}
-
-			vtStop := VirtualTableStop{
-				StopID:             vtStopID,
-				LineID:             lineID,
-				TransportationType: transportationType,
-				RouteID:            routeID}
-
-			stop.VirtualTableStop = vtStop
-			//Update name because it is the empty string for now
-			stop.Name = stopName
-			vtRoutesStops = append(vtRoutesStops, vtStop)
-		})
+		findRouteVTStops(routeSelection, &vtRoutesStops, routes)
 	})
 
 	v.mutex.Lock()
@@ -189,6 +139,62 @@ func (v *vtLineCrawler) Visit(ctx *gocrawl.URLContext, res *http.Response, doc *
 	v.mutex.Unlock()
 	return nil, false
 }
+
+func findRouteVTStops(routeSelection *goquery.Selection, vtRoutesStops *[]VirtualTableStop, routes Routes) {
+	directionString := strings.TrimSpace(routeSelection.Find(".info").Text())
+	route, err := findRoute(routes, directionString)
+	if err != nil {
+		log.Printf("There was an error finding route with name [%v], error: %v\n", directionString, err)
+		return
+	}
+	var lineID, routeID, transportationType string
+	if lineID, err = getValueFromInput(routeSelection, "lid"); err != nil {
+		log.Printf("Error input lineID on route [%v] with error: %v", route.Name, err)
+		return
+	}
+	if routeID, err = getValueFromInput(routeSelection, "rid"); err != nil {
+		log.Printf("Error input routeID on route [%v] with error: %v", route.Name, err)
+		return
+	}
+	if transportationType, err = getValueFromInput(routeSelection, "vt"); err != nil {
+		log.Printf("Error input vt on route [%v] with error: %v", route.Name, err)
+		return
+	}
+
+	routeSelection.Find("option").Each(func(i int, stopSelection *goquery.Selection) {
+		stopText := strings.TrimSpace(stopSelection.Text())
+		stopMatches := vtStopRegex.FindStringSubmatch(stopText)
+		if len(stopMatches) != 3 {
+			log.Printf("Stop name is NOT in the required format: `Some name (xxxx)`, given: %v", stopText)
+			return
+		}
+		stopName := stopMatches[1]
+		stopSign := stopMatches[2]
+
+		vtStopID, ok := stopSelection.Attr("value")
+		if !ok {
+			log.Printf("No required attribute 'value' found on stopID [%v (%v)]", stopName, stopSign)
+		}
+
+		stop, err := findStop(route.Stops, stopSign)
+		if err != nil {
+			log.Printf("Error finding stopID with name [%v (%v)] on direction [%v], error: %v\n", stopName, stopSign, route.Name, err)
+			return
+		}
+
+		vtStop := VirtualTableStop{
+			StopID:             vtStopID,
+			LineID:             lineID,
+			TransportationType: transportationType,
+			RouteID:            routeID}
+
+		stop.VirtualTableStop = vtStop
+		//Update name because it is the empty string for now
+		stop.Name = stopName
+		*vtRoutesStops = append(*vtRoutesStops, vtStop)
+	})
+}
+
 func parseURLToLineParams(url string) (Transportation, string, error) {
 	match := vtSchedulesRegex.FindStringSubmatch(url)
 	transportationString := match[1]

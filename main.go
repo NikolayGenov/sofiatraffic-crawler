@@ -5,7 +5,7 @@ import (
 
 	"time"
 
-	"../crawler"
+	"./crawler"
 	"github.com/garyburd/redigo/redis"
 )
 

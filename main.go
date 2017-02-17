@@ -5,7 +5,7 @@ import (
 
 	"time"
 
-	"./crawler"
+	"github.com/NikolayGenov/sofiatraffic-crawler/crawler"
 	"github.com/garyburd/redigo/redis"
 )
 

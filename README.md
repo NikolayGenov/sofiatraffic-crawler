@@ -1,4 +1,4 @@
-# Sofia Traffic Crawler
+# Sofia Traffic Crawler [![Build Status](https://travis-ci.org/BlackOutBG/SofiaTraffic-Crawler.svg?branch=master)](https://travis-ci.org/BlackOutBG/SofiaTraffic-Crawler)
 
 ## Goal
 

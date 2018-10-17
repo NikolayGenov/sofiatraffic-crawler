@@ -14,7 +14,7 @@ const (
 	schedulesTimesBasicURL = "http://schedules.sofiatraffic.bg/server/html/schedule_load"
 
 	//URL for a page that takes a POST form and returns HTML with real-time-sh times for each stop.
-	virtualTableStopRealTimeURL = "http://m.sofiatraffic.bg/schedules/vehicle-vt"
+	virtualTableStopRealTimeURL = "https://www.sofiatraffic.bg/bg/transport/virtual-tables-by-line"
 
 	//Number of workers used for real-time-sh times crawling of Virtual Tables.
 	numberOfWorkers = 30
@@ -86,24 +86,6 @@ func (s *SofiaTrafficCrawler) CrawlSchedules(forNumberOfLines int) {
 	s.saveSchedules()
 }
 
-//CrawlVirtualTablesLines starts a new crawl by using the existing data from Lines.
-// If it is an empty list, it loads it if it can from redis.
-// It then builds links for crawling each line page in Virtual tables site. Note that there is
-// significant differences in the data between Virtual Tables and Schedules hosted by sofiatraffic.bg.
-// Meaning that no routes or stops match and it uses Schedules Sofia traffic as main source and
-// only matches similar things in Virtual Tables site. It tries to parse and find all available stops for each line.
-// When a stop is found it keeps it in the list VirtualTableStops - all the found active stops.
-// It also updates the non capital name of a stop.
-// In the end it saves the found stops in redis.
-func (s *SofiaTrafficCrawler) CrawlVirtualTablesLines(operation Operation) {
-	if len(s.Lines) == 0 {
-		s.loadLines()
-	}
-	links := buildVirtualTablesSeeds(s.Lines)
-	vtCrawler := newVirtualTableLineCrawler(s.Lines, &s.VirtualTableStops, operation)
-	vtCrawler.Run(links)
-	s.saveVirtualTableStops()
-}
 
 //CrawlVirtualTablesStopsForTimes stats a new crawl by using VirtualTableStops
 // If it is an empty list - it loads it if it can from redis.
@@ -144,17 +126,4 @@ func buildSchedulesSeeds(lines []Line) []string {
 	return scheduleLinks
 }
 
-//Create seed URLs in the format that Virtual Table line schedules requires
-// Information from a Line is enough to create one seed url for virtual tables line page.
-// Returns a slice of all seed URLs.
-func buildVirtualTablesSeeds(lines []Line) []string {
-	vtScheduleLinks := make([]string, 0)
-	for _, line := range lines {
-		vtScheduleLinks = append(vtScheduleLinks,
-			fmt.Sprintf(
-				"http://m.sofiatraffic.bg/schedules?tt=%v&ln=%v&s=Търсене",
-				int(line.Transportation),
-				line.Name))
-	}
-	return vtScheduleLinks
-}
+

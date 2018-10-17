@@ -33,24 +33,12 @@ func main() {
 		}
 		fmt.Println()
 	}
-	fmt.Println(len(st.Lines))
+	fmt.Printf("Lines crawled: %v" ,len(st.Lines))
 
 	st.CrawlSchedules(1)
 	for k, v := range st.Schedules {
 		fmt.Printf("%v,%v\n", k, v)
 	}
-	fmt.Println(len(st.Schedules))
-
-	st.CrawlVirtualTablesLines(crawler.Normal)
-	//for _, vtStop := range st.VirtualTableStops {
-	//	fmt.Println(vtStop)
-	//}
-	fmt.Println(len(st.VirtualTableStops))
-
+	fmt.Printf("Schedules crawled: %v" , len(st.Schedules))
 	st.CrawlVirtualTablesStopsForTimes(100)
-	for k, v := range st.VirtualTableStopsTimes {
-		fmt.Printf("%v -> %v\n", k, v)
-	}
-	fmt.Println(len(st.VirtualTableStopsTimes))
-
 }

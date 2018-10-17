@@ -35,3 +35,4 @@ in redis, so you don't have to run them each time.
 * `CrawlLines` will extract all the lines, directions, operation modes, stops information with some internal IDs
 * `CrawlSchedules` will use the information from the the previous call and get all the schedules for
 each stop in the traffic network for every line, operation mode, and direction.
+* `CrawlVirtualTablesLines` will use the information from CrawlLines and in order to extract the IDs for stops there
